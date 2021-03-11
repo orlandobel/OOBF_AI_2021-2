@@ -1,0 +1,21 @@
+Herramientas/HerramientasImagen.java
+ Herramientas.HerramientasImagen
+gui/JFramePrincipal.java
+ gui.JFramePrincipal
+ gui.JFramePrincipal$1
+gui/CopiarFrame.java
+ gui.CopiarFrame
+ gui.CopiarFrame$1
+gui/ImageFrame.java
+ gui.ImageFrame
+listeners/InternalFrameListener.java
+ listeners.InternalFrameListener
+listeners/ModificarImagenListener.java
+ listeners.ModificarImagenListener
+ImagenAnalisis20212.java
+ ImagenAnalisis20212
+gui/ModificarFrame.java
+ gui.ModificarFrame
+ gui.ModificarFrame$1
+listeners/CopiarActionListener.java
+ listeners.CopiarActionListener
