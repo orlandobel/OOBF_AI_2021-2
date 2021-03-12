@@ -49,11 +49,11 @@ public class JFramePrincipal extends JFrame {
         jdpPrincipal.setLayout(jDeskGroupLayout);
         jDeskGroupLayout.setHorizontalGroup(
             jDeskGroupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 1268, Short.MAX_VALUE)
+            .addGap(0, 980, Short.MAX_VALUE)
         );
         jDeskGroupLayout.setVerticalGroup(
             jDeskGroupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 1268, Short.MAX_VALUE)
+            .addGap(0, 980, Short.MAX_VALUE)
         );
 
         menu1.setText("Imagen");

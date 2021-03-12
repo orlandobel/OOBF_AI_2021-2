@@ -17,23 +17,32 @@ public class ImageFrame extends JInternalFrame {
     private int height;
     private int width;
 
+    private boolean closable;
+
     public ImageFrame(Image imagen) {
         this.imagen = imagen;
+        this.closable = true;
         InitComponents();
         repaintImage();
     }
 
     public ImageFrame() {
+        this.closable = true;
+        InitComponents();
+    }
+
+    public ImageFrame(boolean closable) {
+        this.closable = closable;
         InitComponents();
     }
 
     private void InitComponents() {
-        height = 100;
-        width = 100;
+        height = 200;
+        width = 200;
 
         setBackground(new Color(102,102,225));
-        setClosable(true);
-        setIconifiable(true);
+        setClosable(this.closable);
+        setIconifiable(this.closable);
 
         label = new JLabel();
 

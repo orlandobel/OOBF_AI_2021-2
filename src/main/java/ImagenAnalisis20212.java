@@ -1,21 +1,18 @@
+import Espacial.Histograma;
 import Herramientas.HerramientasImagen;
-import gui.ImageFrame;
 
 import java.awt.Image;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
 
 public class ImagenAnalisis20212 {
 
     public static void main(String[] args) {
+        // visualización de la imagen dentro de la GUI
         Image imagen = HerramientasImagen.openImage();
-        BufferedImage bi = HerramientasImagen.toBufferedImage(imagen);
+        // para cuantización de la imagen vamos a un ocupar BufferedImage
+        //BufferedImage bImagen = herramientas.HerramientasImagen.toBufferedImage(imagen);
+        Histograma h = new Histograma(imagen);
+        h.calcularHistogramas();
 
-        final Color MARCADOR = new Color(65,255, 3);
-        bi.setRGB(100,100, MARCADOR.getRGB());
-
-        imagen = HerramientasImagen.toImage(bi);
-
-        new ImageFrame(imagen);
+        System.out.println();
     }
 }
