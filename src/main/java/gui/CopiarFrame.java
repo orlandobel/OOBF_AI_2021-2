@@ -33,6 +33,7 @@ public class CopiarFrame extends JInternalFrame {
     private JTextField textAncho;
     
     public CopiarFrame(ImageFrame internal, JFramePrincipal jfp) {
+        super("Copiar - "+internal.getTitle());
         this.jfp = jfp;
         this.internal = internal;
         initComponents();
@@ -74,7 +75,6 @@ public class CopiarFrame extends JInternalFrame {
                             int x2 = 0;
                             for(int j=x1;j<x1+ancho;j++) {
                                 int rgb = bi.getRGB(j, i);
-                                Color color = new Color(rgb);
                                 nbi.setRGB(x2, y2, rgb);
                                 x2++;
                             }
@@ -82,8 +82,9 @@ public class CopiarFrame extends JInternalFrame {
                         }
 
                         Image nuevaImagen = HerramientasImagen.toImage(nbi);
+                        String titulo = HerramientasImagen.imageName;
 
-                        ImageFrame ifr = new ImageFrame(nuevaImagen);
+                        ImageFrame ifr = new ImageFrame(titulo+" - cortado",nuevaImagen, jfp.getListener());
                         ifr.setVisible(true);
                         jfp.getJdpPrincipal().add(ifr);
                     } else {

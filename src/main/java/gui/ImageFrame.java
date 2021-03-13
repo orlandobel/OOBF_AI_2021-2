@@ -1,5 +1,7 @@
 package gui;
 
+import listeners.InternalFrameListener;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -19,9 +21,15 @@ public class ImageFrame extends JInternalFrame {
 
     private boolean closable;
 
-    public ImageFrame(Image imagen) {
+    private InternalFrameListener listener;
+
+    public ImageFrame(String titulo, Image imagen, InternalFrameListener listener) {
+        super(titulo);
+        
         this.imagen = imagen;
         this.closable = true;
+        this.listener = listener;
+
         InitComponents();
         repaintImage();
     }
@@ -45,6 +53,8 @@ public class ImageFrame extends JInternalFrame {
         setIconifiable(this.closable);
 
         label = new JLabel();
+
+        addInternalFrameListener(listener);
 
         this.setSize(width, height);
         this.add(this.label);

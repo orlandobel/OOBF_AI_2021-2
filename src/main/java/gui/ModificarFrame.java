@@ -28,6 +28,7 @@ public class ModificarFrame extends JInternalFrame {
     private JTextField textFieldY;
 
     public ModificarFrame(ImageFrame internal) {
+        super("Modificar - "+internal.getTitle());
         this.internal = internal;
         initComponents();
     }

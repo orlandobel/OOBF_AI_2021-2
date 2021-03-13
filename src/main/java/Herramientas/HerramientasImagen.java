@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class HerramientasImagen {
 
+    public static String imageName;
+
     public static Image openImage (){
 
         try {
@@ -34,6 +36,7 @@ public class HerramientasImagen {
             }
 
             File archivo = selector.getSelectedFile();
+            imageName = archivo.getName();
 
             BufferedImage  bi = ImageIO.read(archivo);
 

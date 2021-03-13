@@ -1,28 +1,56 @@
 package listeners;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import Herramientas.HerramientasImagen;
 import gui.ImageFrame;
 import gui.JFramePrincipal;
 
-import java.awt.Image;
+import javax.swing.event.InternalFrameEvent;
+import java.beans.PropertyVetoException;
 
-public class InternalFrameListener implements ActionListener {
+public class InternalFrameListener implements javax.swing.event.InternalFrameListener {
 
-    private JFramePrincipal jfp;
+    private final JFramePrincipal jfp;
 
     public InternalFrameListener(JFramePrincipal jfp) {
         this.jfp = jfp;
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        Image image = HerramientasImagen.openImage();
-        ImageFrame nuevo = new ImageFrame(image);
-        nuevo.setVisible(true);
-        this.jfp.getJdpPrincipal().add(nuevo);
+    public void internalFrameOpened(InternalFrameEvent e) {
+
     }
-    
+
+    @Override
+    public void internalFrameClosing(InternalFrameEvent e) {
+
+    }
+
+    @Override
+    public void internalFrameClosed(InternalFrameEvent e) {
+
+    }
+
+    @Override
+    public void internalFrameIconified(InternalFrameEvent e) {
+
+    }
+
+    @Override
+    public void internalFrameDeiconified(InternalFrameEvent e) {
+
+    }
+
+    @Override
+    public void internalFrameActivated(InternalFrameEvent e) {
+        System.out.println("onInternalFrameActivated");
+        if(e.getInternalFrame() instanceof ImageFrame) {
+            System.out.println("internalFrameActivated entra a la condicion");
+            ImageFrame iframe = (ImageFrame)e.getInternalFrame();
+            jfp.setActiveImageFrame(iframe);
+        }
+    }
+
+    @Override
+    public void internalFrameDeactivated(InternalFrameEvent e) {
+
+    }
 }

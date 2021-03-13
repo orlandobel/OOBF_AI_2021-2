@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.GroupLayout;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -9,12 +7,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
+import javax.swing.event.InternalFrameEvent;
 
-import listeners.CopiarActionListener;
-import listeners.InternalFrameListener;
-import listeners.ModificarImagenListener;
+import listeners.*;
 
-public class JFramePrincipal extends JFrame {
+import java.awt.*;
+
+public class JFramePrincipal extends JFrame  {
 
     /**
      *
@@ -22,26 +21,36 @@ public class JFramePrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
 
     private JDesktopPane jdpPrincipal;
+    private InternalFrameListener internalListener;
+    private ImageFrame activeImageFrame;
     
     private JMenuBar menubar;
-    private JMenu menu1;
-    private JMenu menu2;
-    private JMenuItem menuItem1;
-    private JMenuItem menuItem2;
-    private JMenuItem menuItem3;
+
+    private JMenu menuFile;
+    private JMenu menuEspacial;
+
+    private JMenuItem itemAbrirImagen;
+    private JMenuItem itemModificar;
+    private JMenuItem itemCopiar;
+    private JMenuItem itemFiltros;
 
     public JFramePrincipal () {
+        internalListener = new InternalFrameListener(this);
         initComponents();
     }
 
     private void initComponents() {
         jdpPrincipal = new JDesktopPane();
+
         menubar = new JMenuBar();
-        menu1 = new JMenu();
-        menu2 = new JMenu();
-        menuItem1 = new JMenuItem();
-        menuItem2 = new JMenuItem();
-        menuItem3 = new JMenuItem();
+
+        menuFile = new JMenu();
+        menuEspacial = new JMenu();
+
+        itemAbrirImagen = new JMenuItem();
+        itemModificar = new JMenuItem();
+        itemCopiar = new JMenuItem();
+        itemFiltros = new JMenuItem();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,29 +58,33 @@ public class JFramePrincipal extends JFrame {
         jdpPrincipal.setLayout(jDeskGroupLayout);
         jDeskGroupLayout.setHorizontalGroup(
             jDeskGroupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         jDeskGroupLayout.setVerticalGroup(
             jDeskGroupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
-        menu1.setText("Imagen");
-        menuItem1.setText("Abrir imagen");
-        menuItem1.addActionListener(new InternalFrameListener(this));
-        menu1.add(menuItem1);
+        menuFile.setText("Imagen");
+        itemAbrirImagen.setText("Abrir imagen");
+        itemAbrirImagen.addActionListener(new ImageFrameListener(this));
+        menuFile.add(itemAbrirImagen);
 
-        menu2.setText("Espacial");
-        menuItem2.setText("Modificar pixeles");
-        menuItem2.addActionListener(new ModificarImagenListener(this));
-        menu2.add(menuItem2);
+        menuEspacial.setText("Espacial");
+        itemModificar.setText("Modificar pixeles");
+        itemModificar.addActionListener(new ModificarImagenListener(this));
+        menuEspacial.add(itemModificar);
 
-        menuItem3.setText("Copiar fragmento de imagen");
-        menuItem3.addActionListener(new CopiarActionListener(this));
-        menu2.add(menuItem3);
+        itemCopiar.setText("Copiar fragmento de imagen");
+        itemCopiar.addActionListener(new CopiarActionListener(this));
+        menuEspacial.add(itemCopiar);
 
-        menubar.add(menu1);
-        menubar.add(menu2);
+        itemFiltros.setText("Filtros");
+        itemFiltros.addActionListener(new FiltrosListener(this));
+        menuEspacial.add(itemFiltros);
+
+        menubar.add(menuFile);
+        menubar.add(menuEspacial);
 
         setJMenuBar(menubar);
 
@@ -93,8 +106,16 @@ public class JFramePrincipal extends JFrame {
         return this.jdpPrincipal;
     }
 
-    public void setJdpPrincipal(JDesktopPane jdpPrincipal) {
-        this.jdpPrincipal = jdpPrincipal;
+    public InternalFrameListener getListener() {
+        return this.internalListener;
+    }
+
+    public ImageFrame getActiveImageFrame() {
+        return this.activeImageFrame;
+    }
+
+    public void setActiveImageFrame(ImageFrame iframe) {
+        this.activeImageFrame = iframe;
     }
 
     public static void main(String[] args) {
