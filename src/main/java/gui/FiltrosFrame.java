@@ -144,7 +144,7 @@ public class FiltrosFrame extends JInternalFrame {
         BufferedImage bi = HerramientasImagen.toBufferedImage(image);
         Color color;
         Color c;
-        
+
         for(int x=0;x<image.getWidth(null);x++) {
             for(int y=0;y<image.getHeight(null);y++) {
                 int rgb = bi.getRGB(x, y);
