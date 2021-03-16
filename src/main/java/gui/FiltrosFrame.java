@@ -93,11 +93,12 @@ public class FiltrosFrame extends JInternalFrame {
         Image image = iframe.getImage();
 
         BufferedImage bi = HerramientasImagen.toBufferedImage(image);
+        Color color;
 
         for(int x=0;x<image.getWidth(null);x++) {
             for(int y=0;y<image.getHeight(null);y++) {
                 int rgb = bi.getRGB(x, y);
-                Color color  = new Color(rgb);
+                color  = new Color(rgb);
 
                 int r = color.getRed();
                 int g = color.getGreen();
@@ -116,11 +117,12 @@ public class FiltrosFrame extends JInternalFrame {
         Image image = iframe.getImage();
 
         BufferedImage bi = HerramientasImagen.toBufferedImage(image);
+        Color color;
 
         for(int x=0;x<image.getWidth(null);x++) {
             for(int y=0;y<image.getHeight(null);y++) {
                 int rgb = bi.getRGB(x, y);
-                Color color  = new Color(rgb);
+                color = new Color(rgb);
 
                 int r = color.getRed();
                 int g = color.getGreen();
@@ -140,11 +142,13 @@ public class FiltrosFrame extends JInternalFrame {
         Image image = iframe.getImage();
 
         BufferedImage bi = HerramientasImagen.toBufferedImage(image);
-
+        Color color;
+        Color c;
+        
         for(int x=0;x<image.getWidth(null);x++) {
             for(int y=0;y<image.getHeight(null);y++) {
                 int rgb = bi.getRGB(x, y);
-                Color color  = new Color(rgb);
+                color  = new Color(rgb);
 
                 int r = color.getRed();
                 int g = color.getGreen();
@@ -152,7 +156,7 @@ public class FiltrosFrame extends JInternalFrame {
 
                 int s = r+g+b;
 
-                Color c = (s>380)? Color.WHITE : Color.BLACK;
+                c = (s>380)? Color.WHITE : Color.BLACK;
 
                 bi.setRGB(x, y, c.getRGB());
             }
