@@ -1,20 +1,26 @@
 ImagenAnalisis20212.java
  ImagenAnalisis20212
-gui/HistogramaImagen/HistogramaFrame.java
- gui.HistogramaImagen.HistogramaFrame
-Herramientas/HerramientasImagen.java
- Herramientas.HerramientasImagen
 Espacial/Histograma.java
  Espacial.Histograma
+Herramientas/HerramientasImagen.java
+ Herramientas.HerramientasImagen
+gui/HistogramaImagen/HistogramaFrame.java
+ gui.HistogramaImagen.HistogramaFrame
 gui/FiltrosFrame.java
  gui.FiltrosFrame
  gui.FiltrosFrame$1
  gui.FiltrosFrame$2
  gui.FiltrosFrame$3
+listeners/BinarizarListener.java
+ listeners.BinarizarListener
 gui/ImageFrame.java
  gui.ImageFrame
 listeners/InternalFrameListener.java
  listeners.InternalFrameListener
+gui/FrameBinario.java
+ gui.FrameBinario
+ gui.FrameBinario$1
+ gui.FrameBinario$2
 listeners/ModificarImagenListener.java
  listeners.ModificarImagenListener
 listeners/ImageFrameListener.java

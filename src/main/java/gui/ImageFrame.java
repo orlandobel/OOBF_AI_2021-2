@@ -12,6 +12,7 @@ public class ImageFrame extends JInternalFrame {
      */
     private static final long serialVersionUID = 1L;
 
+    private Image imagenOriginal;
     private Image imagen;
 
     private JLabel label;
@@ -25,7 +26,8 @@ public class ImageFrame extends JInternalFrame {
 
     public ImageFrame(String titulo, Image imagen, InternalFrameListener listener) {
         super(titulo);
-        
+
+        this.imagenOriginal = imagen;
         this.imagen = imagen;
         this.closable = true;
         this.listener = listener;
@@ -77,6 +79,14 @@ public class ImageFrame extends JInternalFrame {
     public void setImage(Image imagen) {
         this.imagen = imagen;
         this.repaintImage();
+    }
+
+    public void reiniciarImagen() {
+        this.setImage(this.imagenOriginal);
+    }
+
+    public Image geiImagenOriginal() {
+        return this.imagenOriginal;
     }
 
     public Image getImage() {

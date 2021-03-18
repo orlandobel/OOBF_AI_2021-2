@@ -33,6 +33,9 @@ public class JFramePrincipal extends JFrame  {
     private JMenuItem itemModificar;
     private JMenuItem itemCopiar;
     private JMenuItem itemFiltros;
+    private JMenuItem itemBinarizar;
+
+    private ModificarImagenListener mlistener;
 
     public JFramePrincipal () {
         internalListener = new InternalFrameListener(this);
@@ -40,6 +43,7 @@ public class JFramePrincipal extends JFrame  {
     }
 
     private void initComponents() {
+        mlistener = new ModificarImagenListener(this);
         jdpPrincipal = new JDesktopPane();
 
         menubar = new JMenuBar();
@@ -51,6 +55,8 @@ public class JFramePrincipal extends JFrame  {
         itemModificar = new JMenuItem();
         itemCopiar = new JMenuItem();
         itemFiltros = new JMenuItem();
+        itemBinarizar = new JMenuItem();
+
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,30 +64,39 @@ public class JFramePrincipal extends JFrame  {
         jdpPrincipal.setLayout(jDeskGroupLayout);
         jDeskGroupLayout.setHorizontalGroup(
             jDeskGroupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         jDeskGroupLayout.setVerticalGroup(
             jDeskGroupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         menuFile.setText("Imagen");
         itemAbrirImagen.setText("Abrir imagen");
+        itemAbrirImagen.setName("open");
         itemAbrirImagen.addActionListener(new ImageFrameListener(this));
         menuFile.add(itemAbrirImagen);
 
         menuEspacial.setText("Espacial");
         itemModificar.setText("Modificar pixeles");
-        itemModificar.addActionListener(new ModificarImagenListener(this));
+        itemModificar.setName("mp"); // mp == modificar pixeles
+        itemModificar.addActionListener(mlistener);
         menuEspacial.add(itemModificar);
 
         itemCopiar.setText("Copiar fragmento de imagen");
-        itemCopiar.addActionListener(new CopiarActionListener(this));
+        itemCopiar.setName("copiar");
+        itemCopiar.addActionListener(mlistener);
         menuEspacial.add(itemCopiar);
 
         itemFiltros.setText("Filtros");
-        itemFiltros.addActionListener(new FiltrosListener(this));
+        itemFiltros.setName("filtros");
+        itemFiltros.addActionListener(mlistener);
         menuEspacial.add(itemFiltros);
+
+        itemBinarizar.setText("Binarizar imagen");
+        itemBinarizar.setName("binarizar");
+        itemBinarizar.addActionListener(mlistener);
+        menuEspacial.add(itemBinarizar);
 
         menubar.add(menuFile);
         menubar.add(menuEspacial);

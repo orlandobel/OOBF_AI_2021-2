@@ -41,6 +41,7 @@ public class CopiarFrame extends JInternalFrame {
 
     private void initComponents() {
         setBackground(new Color(102,102,225));
+
         setClosable(true);
         setIconifiable(true);
 

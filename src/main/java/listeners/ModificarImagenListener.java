@@ -3,11 +3,9 @@ package listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JMenuItem;
+import javax.swing.*;
 
-import gui.ImageFrame;
-import gui.JFramePrincipal;
-import gui.ModificarFrame;
+import gui.*;
 
 public class ModificarImagenListener implements ActionListener {
 
@@ -20,16 +18,30 @@ public class ModificarImagenListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JMenuItem item = (JMenuItem)e.getSource();
+        ImageFrame internal = this.jfp.getActiveImageFrame();
+        //JInternalFrame iNuevo;
 
-        if(item.getText().equals("Modificar pixeles")) {
-            ImageFrame internal = (ImageFrame)this.jfp.getJdpPrincipal().getSelectedFrame();
-            ModificarFrame iNuevo = new ModificarFrame(internal);
-            iNuevo.setVisible(true);
-            this.jfp.getJdpPrincipal().add(iNuevo);
-        } else {
-            System.out.println(item.getText());
+        switch(item.getName()) {
+            case "mp":
+                nuevoFrame(new ModificarFrame(internal));
+                break;
+            case "copiar":
+                nuevoFrame(new CopiarFrame(internal, this.jfp));
+                break;
+            case "filtros":
+                nuevoFrame(new FiltrosFrame(this.jfp));
+                break;
+            case "binarizar":
+                nuevoFrame(new FrameBinario(internal));
+                break;
+            default:
+                System.out.println(item.getText());
         }
-        
+    }
+
+    private void nuevoFrame(JInternalFrame frame) {
+            frame.setVisible(true);
+            jfp.getJdpPrincipal().add(frame);
     }
     
 }

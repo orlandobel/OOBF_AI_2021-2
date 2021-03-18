@@ -16,8 +16,10 @@ public class FramePrincipal extends JFrame {
     private JMenuBar menubar;
     private JMenu menuFile;
     private JMenu menuEspacial;
+    private JMenu submenuHistograma;
     private JMenuItem itemAbrir;
-    private JMenuItem itemHistograma;
+    private JMenuItem itemHistogramaJuntos;
+    private JMenuItem itemHistogramaSeeparados;
 
     public FramePrincipal() {
         initComponents();
@@ -44,14 +46,23 @@ public class FramePrincipal extends JFrame {
         menubar = new JMenuBar();
         menuFile = new JMenu("Archivo");
         menuEspacial = new JMenu("Espacial");
+        submenuHistograma = new JMenu("Histograma");
         itemAbrir = new JMenuItem("Abrir imagen");
-        itemHistograma = new JMenuItem("Calcular histogramas");
+        itemHistogramaJuntos = new JMenuItem("En una sola gráfica");
+        itemHistogramaSeeparados = new JMenuItem("En gráficas separadas");
 
         itemAbrir.addActionListener(new AbrirListener(iframe));
         menuFile.add(itemAbrir);
 
-        itemHistograma.addActionListener(new HistogramaListener(this, this.iframe));
-        menuEspacial.add(itemHistograma);
+        HistogramaListener hl = new HistogramaListener(this, this.iframe);
+
+        itemHistogramaJuntos.addActionListener(hl);
+        submenuHistograma.add(itemHistogramaJuntos);
+
+        itemHistogramaSeeparados.addActionListener(hl);
+        submenuHistograma.add(itemHistogramaSeeparados);
+
+        menuEspacial.add(submenuHistograma);
 
         menubar.add(menuFile);
         menubar.add(menuEspacial);
