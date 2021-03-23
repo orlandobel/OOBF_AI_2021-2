@@ -2,14 +2,16 @@ package gui.HistogramaImagen;
 
 import Espacial.Histograma;
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.StandardBarPainter;
+import org.jfree.chart.renderer.xy.XYAreaRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.statistics.HistogramDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -20,6 +22,7 @@ public class HistogramaFrame extends JInternalFrame {
 
     private JFreeChart grafica;
     private XYSeriesCollection series;
+
 
     public HistogramaFrame(String titulo, Color color, DefaultCategoryDataset dataset) {
         super(titulo);
@@ -54,22 +57,8 @@ public class HistogramaFrame extends JInternalFrame {
     public HistogramaFrame() {
         grafica = null;
         this.series = new XYSeriesCollection();
-    }
-
-    public HistogramaFrame(Histograma histograma) {
-        DefaultCategoryDataset datasetR = new DefaultCategoryDataset();
-        DefaultCategoryDataset datasetG = new DefaultCategoryDataset();
-        DefaultCategoryDataset datasetB = new DefaultCategoryDataset();
-
-        double[] r = histograma.getR();
-        double[] g = histograma.getG();
-        double[] b = histograma.getB();
-
-        for(int i=0;i<256;i++) {
-            datasetR.addValue(r[i], "", ""+i);
-            datasetG.addValue(g[i], "", ""+i);
-            datasetB.addValue(b[i], "", ""+i);
-        }
+        setClosable(true);
+        setIconifiable(true);
     }
 
     public void agregarSerie(String nombre, double[] data) {
@@ -79,7 +68,28 @@ public class HistogramaFrame extends JInternalFrame {
             serie.add(i, data[i]);
         }
 
-
+        series.addSeries(serie);
     }
 
+    public void crearGrafica(Color[] colores) {
+        grafica = ChartFactory.createXYAreaChart(
+                "Histograma de la imagen", "Intensidad", "Frecuencia",
+                series, PlotOrientation.VERTICAL, true, true, true);
+
+        XYPlot plot = grafica.getXYPlot();
+        XYAreaRenderer render;
+        for(int i=0; i<colores.length;i++) {
+            render = (XYAreaRenderer)plot.getRenderer();
+            render.setSeriesPaint(i, colores[i]);
+        }
+    }
+
+    public void mostrarGrafica() {
+        ChartPanel panel = new ChartPanel(grafica);
+        //panel.setSize(500,370);
+        setTitle("Histograma de colores");
+        setSize(500,370);
+        setContentPane(panel);
+        setVisible(true);
+    }
 }

@@ -81,6 +81,12 @@ public class ImageFrame extends JInternalFrame {
         this.repaintImage();
     }
 
+    public void setImageOriginal(Image imagen) {
+        this.imagenOriginal = imagen;
+        this.imagen = imagen;
+        this.repaintImage();
+    }
+
     public void reiniciarImagen() {
         this.setImage(this.imagenOriginal);
     }

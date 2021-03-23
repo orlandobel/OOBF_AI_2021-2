@@ -134,7 +134,7 @@ public class FiltrosFrame extends JInternalFrame {
         }
 
         image = HerramientasImagen.toImage(bi);
-        iframe.setImage(image);
+        iframe.setImageOriginal(image);
     }
 
     private void btn_bwActionPermorm(ActionEvent e) {

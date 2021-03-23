@@ -32,6 +32,7 @@ public class JFramePrincipal extends JFrame  {
     private JMenuItem itemAbrirImagen;
     private JMenuItem itemModificar;
     private JMenuItem itemCopiar;
+    private JMenuItem itemHistogramaCompleto;
     private JMenuItem itemFiltros;
     private JMenuItem itemBinarizar;
 
@@ -54,6 +55,7 @@ public class JFramePrincipal extends JFrame  {
         itemAbrirImagen = new JMenuItem();
         itemModificar = new JMenuItem();
         itemCopiar = new JMenuItem();
+        itemHistogramaCompleto = new JMenuItem();
         itemFiltros = new JMenuItem();
         itemBinarizar = new JMenuItem();
 
@@ -87,6 +89,11 @@ public class JFramePrincipal extends JFrame  {
         itemCopiar.setName("copiar");
         itemCopiar.addActionListener(mlistener);
         menuEspacial.add(itemCopiar);
+
+        itemHistogramaCompleto.setText("Histograma");
+        itemHistogramaCompleto.setName("histograma");
+        itemHistogramaCompleto.addActionListener(mlistener);
+        menuEspacial.add(itemHistogramaCompleto);
 
         itemFiltros.setText("Filtros");
         itemFiltros.setName("filtros");

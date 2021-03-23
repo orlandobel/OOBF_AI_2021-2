@@ -30,7 +30,10 @@ public class FrameBinario extends JInternalFrame {
         setClosable(true);
         setIconifiable(true);
 
+        umbralSlider.setMajorTickSpacing(10);
         umbralSlider.setMaximum(255);
+        umbralSlider.setPaintLabels(true);
+        umbralSlider.setPaintTicks(true);
         umbralSlider.setMinimum(15);
 
         btn_binarizar.setText("Convertir");
@@ -55,7 +58,7 @@ public class FrameBinario extends JInternalFrame {
 
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(umbralSlider, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                .addComponent(umbralSlider, GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(btn_binarizar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -93,8 +96,9 @@ public class FrameBinario extends JInternalFrame {
                 int b = color.getBlue();
 
                 int m = r+g+b;
+                m/=3;
 
-                nColor = (m>=u) ? Color.WHITE : Color.BLACK;
+                nColor = (m<u) ? Color.WHITE : Color.BLACK;
 
                 bi.setRGB(x, y, nColor.getRGB());
             }
