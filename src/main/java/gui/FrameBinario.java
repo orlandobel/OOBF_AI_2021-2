@@ -82,7 +82,7 @@ public class FrameBinario extends JInternalFrame {
 
     private void binarizar() {
         int u = umbralSlider.getValue();
-        BufferedImage bi = HerramientasImagen.toBufferedImage(iframe.geiImagenOriginal());
+        BufferedImage bi = HerramientasImagen.toBufferedImage(iframe.getImagenOriginal());
 
         Color color;
         Color nColor;

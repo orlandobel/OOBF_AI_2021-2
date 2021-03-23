@@ -91,7 +91,7 @@ public class ImageFrame extends JInternalFrame {
         this.setImage(this.imagenOriginal);
     }
 
-    public Image geiImagenOriginal() {
+    public Image getImagenOriginal() {
         return this.imagenOriginal;
     }
 
