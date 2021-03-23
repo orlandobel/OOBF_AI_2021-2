@@ -11,12 +11,16 @@ gui/FiltrosFrame.java
  gui.FiltrosFrame$1
  gui.FiltrosFrame$2
  gui.FiltrosFrame$3
-gui/ImageFrame.java
- gui.ImageFrame
-listeners/InternalFrameListener.java
- listeners.InternalFrameListener
 listeners/HistogramaImagen/AbrirListener.java
  listeners.HistogramaImagen.AbrirListener
+gui/ImageFrame.java
+ gui.ImageFrame
+Espacial/Iluminacion.java
+ Espacial.Iluminacion
+listeners/InternalFrameListener.java
+ listeners.InternalFrameListener
+gui/SelectHistogramaFrame.java
+ gui.SelectHistogramaFrame
 gui/FrameBinario.java
  gui.FrameBinario
  gui.FrameBinario$1
@@ -31,13 +35,15 @@ gui/CopiarFrame.java
  gui.CopiarFrame$1
 listeners/HistogramaImagen/HistogramaListener.java
  listeners.HistogramaImagen.HistogramaListener
-gui/HistogramaImagen/FramePrincipal.java
- gui.HistogramaImagen.FramePrincipal
- gui.HistogramaImagen.FramePrincipal$1
 gui/JFramePrincipal.java
  gui.JFramePrincipal
  gui.JFramePrincipal$1
-gui/SelectHistogramaFrame.java
- gui.SelectHistogramaFrame
+gui/HistogramaImagen/FramePrincipal.java
+ gui.HistogramaImagen.FramePrincipal
+ gui.HistogramaImagen.FramePrincipal$1
+gui/IluminacionFrame.java
+ gui.IluminacionFrame
+ gui.IluminacionFrame$1
+ gui.IluminacionFrame$2
 listeners/ModificarImagenListener.java
  listeners.ModificarImagenListener

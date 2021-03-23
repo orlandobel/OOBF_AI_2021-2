@@ -35,6 +35,7 @@ public class JFramePrincipal extends JFrame  {
     private JMenuItem itemHistogramaCompleto;
     private JMenuItem itemFiltros;
     private JMenuItem itemBinarizar;
+    private JMenuItem itemIluminacion;
 
     private ModificarImagenListener mlistener;
 
@@ -58,6 +59,7 @@ public class JFramePrincipal extends JFrame  {
         itemHistogramaCompleto = new JMenuItem();
         itemFiltros = new JMenuItem();
         itemBinarizar = new JMenuItem();
+        itemIluminacion = new JMenuItem();
 
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -83,27 +85,36 @@ public class JFramePrincipal extends JFrame  {
         itemModificar.setText("Modificar pixeles");
         itemModificar.setName("mp"); // mp == modificar pixeles
         itemModificar.addActionListener(mlistener);
-        menuEspacial.add(itemModificar);
 
         itemCopiar.setText("Copiar fragmento de imagen");
         itemCopiar.setName("copiar");
         itemCopiar.addActionListener(mlistener);
-        menuEspacial.add(itemCopiar);
 
         itemHistogramaCompleto.setText("Histograma");
         itemHistogramaCompleto.setName("histograma");
         itemHistogramaCompleto.addActionListener(mlistener);
-        menuEspacial.add(itemHistogramaCompleto);
+
 
         itemFiltros.setText("Filtros");
         itemFiltros.setName("filtros");
         itemFiltros.addActionListener(mlistener);
-        menuEspacial.add(itemFiltros);
+
 
         itemBinarizar.setText("Binarizar imagen");
         itemBinarizar.setName("binarizar");
         itemBinarizar.addActionListener(mlistener);
+
+
+        itemIluminacion.setText("Iluminacion");
+        itemIluminacion.setName("iluminacion");
+        itemIluminacion.addActionListener(mlistener);
+
+        menuEspacial.add(itemModificar);
+        menuEspacial.add(itemCopiar);
+        menuEspacial.add(itemHistogramaCompleto);
+        menuEspacial.add(itemFiltros);
         menuEspacial.add(itemBinarizar);
+        menuEspacial.add(itemIluminacion);
 
         menubar.add(menuFile);
         menubar.add(menuEspacial);
