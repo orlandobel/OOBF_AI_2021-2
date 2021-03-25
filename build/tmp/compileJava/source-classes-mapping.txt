@@ -2,29 +2,32 @@ Espacial/Histograma.java
  Espacial.Histograma
 Herramientas/HerramientasImagen.java
  Herramientas.HerramientasImagen
-gui/HistogramaImagen/HistogramaFrame.java
- gui.HistogramaImagen.HistogramaFrame
 ImagenAnalisis20212.java
  ImagenAnalisis20212
+gui/HistogramaImagen/HistogramaFrame.java
+ gui.HistogramaImagen.HistogramaFrame
 gui/FiltrosFrame.java
  gui.FiltrosFrame
  gui.FiltrosFrame$1
  gui.FiltrosFrame$2
  gui.FiltrosFrame$3
-listeners/HistogramaImagen/AbrirListener.java
- listeners.HistogramaImagen.AbrirListener
+gui/IluminacionFrame.java
+ gui.IluminacionFrame
+ gui.IluminacionFrame$1
+ gui.IluminacionFrame$2
 gui/ImageFrame.java
  gui.ImageFrame
+listeners/HistogramaImagen/AbrirListener.java
+ listeners.HistogramaImagen.AbrirListener
 Espacial/Iluminacion.java
  Espacial.Iluminacion
 listeners/InternalFrameListener.java
  listeners.InternalFrameListener
 gui/SelectHistogramaFrame.java
  gui.SelectHistogramaFrame
-gui/FrameBinario.java
- gui.FrameBinario
- gui.FrameBinario$1
- gui.FrameBinario$2
+gui/HistogramaImagen/FramePrincipal.java
+ gui.HistogramaImagen.FramePrincipal
+ gui.HistogramaImagen.FramePrincipal$1
 gui/ModificarFrame.java
  gui.ModificarFrame
  gui.ModificarFrame$1
@@ -38,12 +41,15 @@ listeners/HistogramaImagen/HistogramaListener.java
 gui/JFramePrincipal.java
  gui.JFramePrincipal
  gui.JFramePrincipal$1
-gui/HistogramaImagen/FramePrincipal.java
- gui.HistogramaImagen.FramePrincipal
- gui.HistogramaImagen.FramePrincipal$1
-gui/IluminacionFrame.java
- gui.IluminacionFrame
- gui.IluminacionFrame$1
- gui.IluminacionFrame$2
+gui/FrameBinario2.java
+ gui.FrameBinario2
+ gui.FrameBinario2$1
+ gui.FrameBinario2$2
+gui/FrameBinario.java
+ gui.FrameBinario
+ gui.FrameBinario$1
+ gui.FrameBinario$2
 listeners/ModificarImagenListener.java
  listeners.ModificarImagenListener
+Espacial/Binarizacion.java
+ Espacial.Binarizacion

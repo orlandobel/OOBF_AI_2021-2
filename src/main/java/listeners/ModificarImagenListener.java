@@ -55,6 +55,9 @@ public class ModificarImagenListener implements ActionListener {
             case "binarizar":
                 nuevoFrame(new FrameBinario(internal));
                 break;
+            case "binarizar2":
+                nuevoFrame(new FrameBinario2(internal));
+                break;
             case "iluminacion":
                 nuevoFrame(new IluminacionFrame(this.jfp));
                 break;

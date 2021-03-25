@@ -28,6 +28,7 @@ public class JFramePrincipal extends JFrame  {
 
     private JMenu menuFile;
     private JMenu menuEspacial;
+    private JMenu submenuBinarizacion;
 
     private JMenuItem itemAbrirImagen;
     private JMenuItem itemModificar;
@@ -35,6 +36,7 @@ public class JFramePrincipal extends JFrame  {
     private JMenuItem itemHistogramaCompleto;
     private JMenuItem itemFiltros;
     private JMenuItem itemBinarizar;
+    private JMenuItem itemBinarizar2;
     private JMenuItem itemIluminacion;
 
     private ModificarImagenListener mlistener;
@@ -52,6 +54,7 @@ public class JFramePrincipal extends JFrame  {
 
         menuFile = new JMenu();
         menuEspacial = new JMenu();
+        submenuBinarizacion = new JMenu();
 
         itemAbrirImagen = new JMenuItem();
         itemModificar = new JMenuItem();
@@ -59,6 +62,7 @@ public class JFramePrincipal extends JFrame  {
         itemHistogramaCompleto = new JMenuItem();
         itemFiltros = new JMenuItem();
         itemBinarizar = new JMenuItem();
+        itemBinarizar2 = new JMenuItem();
         itemIluminacion = new JMenuItem();
 
 
@@ -75,13 +79,18 @@ public class JFramePrincipal extends JFrame  {
             .addGap(0, 600, Short.MAX_VALUE)
         );
 
+        /* -- Nombres de menus y submenus -- */
         menuFile.setText("Imagen");
+        menuEspacial.setText("Espacial");
+        submenuBinarizacion.setText("Binarizacion");
+        /* --------------------------------- */
+
+
         itemAbrirImagen.setText("Abrir imagen");
         itemAbrirImagen.setName("open");
         itemAbrirImagen.addActionListener(new ImageFrameListener(this));
         menuFile.add(itemAbrirImagen);
 
-        menuEspacial.setText("Espacial");
         itemModificar.setText("Modificar pixeles");
         itemModificar.setName("mp"); // mp == modificar pixeles
         itemModificar.addActionListener(mlistener);
@@ -104,20 +113,33 @@ public class JFramePrincipal extends JFrame  {
         itemBinarizar.setName("binarizar");
         itemBinarizar.addActionListener(mlistener);
 
+        itemBinarizar2.setText("Binarizar imagen con 2 umbrales");
+        itemBinarizar2.setName("binarizar2");
+        itemBinarizar2.addActionListener(mlistener);
+
 
         itemIluminacion.setText("Iluminacion");
         itemIluminacion.setName("iluminacion");
         itemIluminacion.addActionListener(mlistener);
 
+        /* -- Añadir a submenu de binarización -- */
+        submenuBinarizacion.add(itemBinarizar);
+        submenuBinarizacion.add(itemBinarizar2);
+        /* -------------------------------------- */
+
+        /* -- Añadir a menu espacial -- */
         menuEspacial.add(itemModificar);
         menuEspacial.add(itemCopiar);
         menuEspacial.add(itemHistogramaCompleto);
         menuEspacial.add(itemFiltros);
-        menuEspacial.add(itemBinarizar);
+        menuEspacial.add(submenuBinarizacion);
         menuEspacial.add(itemIluminacion);
+        /* ---------------------------- */
 
+        /* -- Añadir menus a la barra de menus -- */
         menubar.add(menuFile);
         menubar.add(menuEspacial);
+        /* -------------------------------------- */
 
         setJMenuBar(menubar);
 

@@ -1,5 +1,6 @@
 package gui;
 
+import Espacial.Binarizacion;
 import Herramientas.HerramientasImagen;
 
 import javax.swing.*;
@@ -16,8 +17,11 @@ public class FrameBinario extends JInternalFrame {
     private JButton btn_original;
     private JSlider umbralSlider;
 
+    private Binarizacion binarizador;
+
     public FrameBinario(ImageFrame iframe) {
         this.iframe = iframe;
+        this.binarizador = new Binarizacion(iframe);
         initComponents();
     }
 
@@ -82,29 +86,7 @@ public class FrameBinario extends JInternalFrame {
 
     private void binarizar() {
         int u = umbralSlider.getValue();
-        BufferedImage bi = HerramientasImagen.toBufferedImage(iframe.getImagenOriginal());
-
-        Color color;
-        Color nColor;
-
-        for(int x=0;x<bi.getWidth();x++) {
-            for(int y=0;y<bi.getHeight();y++) {
-                color = new Color(bi.getRGB(x,y));
-
-                int r = color.getRed();
-                int g = color.getGreen();
-                int b = color.getBlue();
-
-                int m = r+g+b;
-                m/=3;
-
-                nColor = (m<u) ? Color.WHITE : Color.BLACK;
-
-                bi.setRGB(x, y, nColor.getRGB());
-            }
-        }
-
-        iframe.setImage(HerramientasImagen.toImage(bi));
+        binarizador.binarizazar(u);
     }
 
     private void colocarOriginal() {
