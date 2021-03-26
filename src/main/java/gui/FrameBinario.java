@@ -17,11 +17,9 @@ public class FrameBinario extends JInternalFrame {
     private JButton btn_original;
     private JSlider umbralSlider;
 
-    private Binarizacion binarizador;
 
     public FrameBinario(ImageFrame iframe) {
         this.iframe = iframe;
-        this.binarizador = new Binarizacion(iframe);
         initComponents();
     }
 
@@ -86,7 +84,8 @@ public class FrameBinario extends JInternalFrame {
 
     private void binarizar() {
         int u = umbralSlider.getValue();
-        binarizador.binarizazar(u);
+        Image image = Binarizacion.binarizazar(u, iframe.getImagenOriginal());
+        iframe.setImage(image);
     }
 
     private void colocarOriginal() {

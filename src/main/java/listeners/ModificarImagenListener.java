@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import Espacial.Binarizacion;
 import Espacial.Histograma;
 import gui.*;
 import gui.HistogramaImagen.HistogramaFrame;
@@ -57,6 +58,11 @@ public class ModificarImagenListener implements ActionListener {
                 break;
             case "binarizar2":
                 nuevoFrame(new FrameBinario2(internal));
+                break;
+            case "binarizar3":
+                ImageFrame iframe = jfp.getActiveImageFrame();
+                Image nimage = Binarizacion.binarizar(iframe.getImagenOriginal());
+                iframe.setImage(nimage);
                 break;
             case "iluminacion":
                 nuevoFrame(new IluminacionFrame(this.jfp));

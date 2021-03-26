@@ -3,6 +3,7 @@ package gui;
 import Espacial.Binarizacion;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -48,17 +49,17 @@ public class FrameBinario2 extends JInternalFrame {
         labelBlanco.setHorizontalAlignment(SwingConstants.CENTER);
         labelBlanco.setVerticalAlignment(SwingConstants.CENTER);
 
-        umbralSlider1.setMajorTickSpacing(5);
-        umbralSlider1.setMaximum(127);
+        umbralSlider1.setMajorTickSpacing(10);
+        umbralSlider1.setMaximum(255);
         umbralSlider1.setPaintLabels(true);
         umbralSlider1.setPaintTicks(true);
         umbralSlider1.setMinimum(0);
 
-        umbralSlider2.setMajorTickSpacing(5);
+        umbralSlider2.setMajorTickSpacing(10);
         umbralSlider2.setMaximum(255);
         umbralSlider2.setPaintLabels(true);
         umbralSlider2.setPaintTicks(true);
-        umbralSlider2.setMinimum(128);
+        umbralSlider2.setMinimum(0);
 
         btn_binarizar.setText("Convertir");
         btn_original.setText("Imagen original");
@@ -131,7 +132,8 @@ public class FrameBinario2 extends JInternalFrame {
         int u1 = umbralSlider1.getValue();
         int u2 = umbralSlider2.getValue();
 
-        binarizador.binarizazar(u1, u2);
+        Image image = binarizador.binarizazar(u1, u2, iframe.getImagenOriginal());
+        iframe.setImage(image);
     }
 
     private void colocarOriginal() {

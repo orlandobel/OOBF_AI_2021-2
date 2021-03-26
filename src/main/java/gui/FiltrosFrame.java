@@ -1,5 +1,6 @@
 package gui;
 
+import Espacial.Filtros;
 import Herramientas.HerramientasImagen;
 
 import javax.swing.*;
@@ -15,7 +16,6 @@ public class FiltrosFrame extends JInternalFrame {
     private JButton btn_negativo;
     private JButton btn_grices;
     private JButton btn_bw; // Boton para filtro de blanco y negro (black and white)
-
 
     public FiltrosFrame(JFramePrincipal jfp) {
         super("Filtros");
@@ -92,21 +92,7 @@ public class FiltrosFrame extends JInternalFrame {
         ImageFrame iframe = jfp.getActiveImageFrame();
         Image image = iframe.getImage();
 
-        BufferedImage bi = HerramientasImagen.toBufferedImage(image);
-        Color color;
-
-        for(int x=0;x<image.getWidth(null);x++) {
-            for(int y=0;y<image.getHeight(null);y++) {
-                int rgb = bi.getRGB(x, y);
-                color  = new Color(rgb);
-
-                int r = color.getRed();
-                int g = color.getGreen();
-                int b = color.getBlue();
-
-                bi.setRGB(x, y, new Color(255-r, 255-g, 255-b).getRGB());
-            }
-        }
+        BufferedImage bi = Filtros.calcularGrices(image);
 
         image = HerramientasImagen.toImage(bi);
         iframe.setImage(image);

@@ -7,7 +7,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
-import javax.swing.event.InternalFrameEvent;
 
 import listeners.*;
 
@@ -37,6 +36,7 @@ public class JFramePrincipal extends JFrame  {
     private JMenuItem itemFiltros;
     private JMenuItem itemBinarizar;
     private JMenuItem itemBinarizar2;
+    private JMenuItem itemBinarizarAutomatico;
     private JMenuItem itemIluminacion;
 
     private ModificarImagenListener mlistener;
@@ -63,6 +63,7 @@ public class JFramePrincipal extends JFrame  {
         itemFiltros = new JMenuItem();
         itemBinarizar = new JMenuItem();
         itemBinarizar2 = new JMenuItem();
+        itemBinarizarAutomatico = new JMenuItem();
         itemIluminacion = new JMenuItem();
 
 
@@ -85,56 +86,22 @@ public class JFramePrincipal extends JFrame  {
         submenuBinarizacion.setText("Binarizacion");
         /* --------------------------------- */
 
-
         itemAbrirImagen.setText("Abrir imagen");
         itemAbrirImagen.setName("open");
         itemAbrirImagen.addActionListener(new ImageFrameListener(this));
         menuFile.add(itemAbrirImagen);
 
-        itemModificar.setText("Modificar pixeles");
-        itemModificar.setName("mp"); // mp == modificar pixeles
-        itemModificar.addActionListener(mlistener);
+        initJMenuItem(itemModificar, "Modificar pixeles", "mp", menuEspacial);
+        initJMenuItem(itemCopiar, "Copiar fragmento de imagen", "copiar", menuEspacial);
+        initJMenuItem(itemHistogramaCompleto, "Histograma", "histograma", menuEspacial);
+        initJMenuItem(itemFiltros, "Filtros", "filtros", menuEspacial);
 
-        itemCopiar.setText("Copiar fragmento de imagen");
-        itemCopiar.setName("copiar");
-        itemCopiar.addActionListener(mlistener);
-
-        itemHistogramaCompleto.setText("Histograma");
-        itemHistogramaCompleto.setName("histograma");
-        itemHistogramaCompleto.addActionListener(mlistener);
-
-
-        itemFiltros.setText("Filtros");
-        itemFiltros.setName("filtros");
-        itemFiltros.addActionListener(mlistener);
-
-
-        itemBinarizar.setText("Binarizar imagen");
-        itemBinarizar.setName("binarizar");
-        itemBinarizar.addActionListener(mlistener);
-
-        itemBinarizar2.setText("Binarizar imagen con 2 umbrales");
-        itemBinarizar2.setName("binarizar2");
-        itemBinarizar2.addActionListener(mlistener);
-
-
-        itemIluminacion.setText("Iluminacion");
-        itemIluminacion.setName("iluminacion");
-        itemIluminacion.addActionListener(mlistener);
-
-        /* -- Añadir a submenu de binarización -- */
-        submenuBinarizacion.add(itemBinarizar);
-        submenuBinarizacion.add(itemBinarizar2);
-        /* -------------------------------------- */
-
-        /* -- Añadir a menu espacial -- */
-        menuEspacial.add(itemModificar);
-        menuEspacial.add(itemCopiar);
-        menuEspacial.add(itemHistogramaCompleto);
-        menuEspacial.add(itemFiltros);
         menuEspacial.add(submenuBinarizacion);
-        menuEspacial.add(itemIluminacion);
-        /* ---------------------------- */
+        initJMenuItem(itemBinarizar, "Binarizar imagen", "binarizar", submenuBinarizacion);
+        initJMenuItem(itemBinarizar2, "Binarizar imagen con 2 umbrales", "binarizar2", submenuBinarizacion);
+        initJMenuItem(itemBinarizarAutomatico, "Auto binarizar", "binarizar3", submenuBinarizacion);
+
+        initJMenuItem(itemIluminacion, "Iluminacion", "iluminacion", menuEspacial);
 
         /* -- Añadir menus a la barra de menus -- */
         menubar.add(menuFile);
@@ -155,6 +122,14 @@ public class JFramePrincipal extends JFrame  {
         );
 
         pack();
+    }
+
+    private void initJMenuItem(JMenuItem item, String text, String name, JMenu menu) {
+        item.setText(text);
+        item.setName(name);
+        item.addActionListener(mlistener);
+
+        menu.add(item);
     }
 
     public JDesktopPane getJdpPrincipal() {
