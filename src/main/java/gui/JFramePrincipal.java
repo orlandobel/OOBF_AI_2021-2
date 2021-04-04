@@ -28,6 +28,7 @@ public class JFramePrincipal extends JFrame  {
     private JMenu menuFile;
     private JMenu menuEspacial;
     private JMenu submenuBinarizacion;
+    private JMenu subsubmenuBinarizacion; // sub sub menu para binarizaciones automaticas
 
     private JMenuItem itemAbrirImagen;
     private JMenuItem itemModificar;
@@ -37,6 +38,7 @@ public class JFramePrincipal extends JFrame  {
     private JMenuItem itemBinarizar;
     private JMenuItem itemBinarizar2;
     private JMenuItem itemBinarizarAutomatico;
+    private JMenuItem itemBinarizarOtsu;
     private JMenuItem itemIluminacion;
 
     private ModificarImagenListener mlistener;
@@ -55,6 +57,7 @@ public class JFramePrincipal extends JFrame  {
         menuFile = new JMenu();
         menuEspacial = new JMenu();
         submenuBinarizacion = new JMenu();
+        subsubmenuBinarizacion = new JMenu();
 
         itemAbrirImagen = new JMenuItem();
         itemModificar = new JMenuItem();
@@ -64,6 +67,7 @@ public class JFramePrincipal extends JFrame  {
         itemBinarizar = new JMenuItem();
         itemBinarizar2 = new JMenuItem();
         itemBinarizarAutomatico = new JMenuItem();
+        itemBinarizarOtsu = new JMenuItem();
         itemIluminacion = new JMenuItem();
 
 
@@ -81,25 +85,28 @@ public class JFramePrincipal extends JFrame  {
         );
 
         /* -- Nombres de menus y submenus -- */
-        menuFile.setText("Imagen");
+        menuFile.setText("Imágen");
         menuEspacial.setText("Espacial");
-        submenuBinarizacion.setText("Binarizacion");
+        submenuBinarizacion.setText("Binarización");
+        subsubmenuBinarizacion.setText("Binarización automatica");
         /* --------------------------------- */
 
-        itemAbrirImagen.setText("Abrir imagen");
+        itemAbrirImagen.setText("Abrir imágen");
         itemAbrirImagen.setName("open");
         itemAbrirImagen.addActionListener(new ImageFrameListener(this));
         menuFile.add(itemAbrirImagen);
 
         initJMenuItem(itemModificar, "Modificar pixeles", "mp", menuEspacial);
-        initJMenuItem(itemCopiar, "Copiar fragmento de imagen", "copiar", menuEspacial);
+        initJMenuItem(itemCopiar, "Copiar fragmento de imágen", "copiar", menuEspacial);
         initJMenuItem(itemHistogramaCompleto, "Histograma", "histograma", menuEspacial);
         initJMenuItem(itemFiltros, "Filtros", "filtros", menuEspacial);
 
         menuEspacial.add(submenuBinarizacion);
-        initJMenuItem(itemBinarizar, "Binarizar imagen", "binarizar", submenuBinarizacion);
-        initJMenuItem(itemBinarizar2, "Binarizar imagen con 2 umbrales", "binarizar2", submenuBinarizacion);
-        initJMenuItem(itemBinarizarAutomatico, "Auto binarizar", "binarizar3", submenuBinarizacion);
+        initJMenuItem(itemBinarizar, "Binarizar imágen", "binarizar", submenuBinarizacion);
+        initJMenuItem(itemBinarizar2, "Binarizar imágen con 2 umbrales", "binarizar2", submenuBinarizacion);
+        submenuBinarizacion.add(subsubmenuBinarizacion);
+        initJMenuItem(itemBinarizarAutomatico, "Método iterativo", "binarizar3", subsubmenuBinarizacion);
+        initJMenuItem(itemBinarizarOtsu, "Método otsu", "binarizar4", subsubmenuBinarizacion);
 
         initJMenuItem(itemIluminacion, "Iluminacion", "iluminacion", menuEspacial);
 

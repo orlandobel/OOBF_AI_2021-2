@@ -27,31 +27,31 @@ listeners/InternalFrameListener.java
  listeners.InternalFrameListener
 gui/SelectHistogramaFrame.java
  gui.SelectHistogramaFrame
-gui/ModificarFrame.java
- gui.ModificarFrame
- gui.ModificarFrame$1
 gui/HistogramaImagen/FramePrincipal.java
  gui.HistogramaImagen.FramePrincipal
  gui.HistogramaImagen.FramePrincipal$1
-gui/JFramePrincipal.java
- gui.JFramePrincipal
- gui.JFramePrincipal$1
+gui/ModificarFrame.java
+ gui.ModificarFrame
+ gui.ModificarFrame$1
+listeners/HistogramaImagen/HistogramaListener.java
+ listeners.HistogramaImagen.HistogramaListener
 listeners/ImageFrameListener.java
  listeners.ImageFrameListener
 gui/CopiarFrame.java
  gui.CopiarFrame
  gui.CopiarFrame$1
-listeners/HistogramaImagen/HistogramaListener.java
- listeners.HistogramaImagen.HistogramaListener
+gui/JFramePrincipal.java
+ gui.JFramePrincipal
+ gui.JFramePrincipal$1
 gui/FrameBinario2.java
  gui.FrameBinario2
  gui.FrameBinario2$1
  gui.FrameBinario2$2
-Espacial/Binarizacion.java
- Espacial.Binarizacion
 gui/FrameBinario.java
  gui.FrameBinario
  gui.FrameBinario$1
  gui.FrameBinario$2
 listeners/ModificarImagenListener.java
  listeners.ModificarImagenListener
+Espacial/Binarizacion.java
+ Espacial.Binarizacion

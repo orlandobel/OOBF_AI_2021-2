@@ -22,9 +22,11 @@ public class ImageFrameListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Image image = HerramientasImagen.openImage();
         String titulo = HerramientasImagen.imageName;
+
         ImageFrame nuevo = new ImageFrame(titulo, image, jfp.getListener());
         nuevo.setVisible(true);
         this.jfp.getJdpPrincipal().add(nuevo);
+
         try {
             nuevo.setSelected(true);
         } catch (PropertyVetoException propertyVetoException) {

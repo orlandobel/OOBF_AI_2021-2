@@ -64,6 +64,13 @@ public class ModificarImagenListener implements ActionListener {
                 Image nimage = Binarizacion.binarizar(iframe.getImagenOriginal());
                 iframe.setImage(nimage);
                 break;
+            case "binarizar4":
+                ImageFrame ifr = jfp.getActiveImageFrame();
+                Histograma h = new Histograma(ifr.getImagenOriginal());
+                h.calcularHistogramas();
+                Image nimg = Binarizacion.binarizarOtsu(ifr.getImagenOriginal(), h.getR());
+                ifr.setImage(nimg);
+                break;
             case "iluminacion":
                 nuevoFrame(new IluminacionFrame(this.jfp));
                 break;
@@ -75,6 +82,12 @@ public class ModificarImagenListener implements ActionListener {
     private void nuevoFrame(JInternalFrame frame) {
             frame.setVisible(true);
             jfp.getJdpPrincipal().add(frame);
+
+            try {
+                frame.setSelected(true);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
     }
     
 }

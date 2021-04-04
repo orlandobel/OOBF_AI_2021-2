@@ -1,13 +1,11 @@
 package gui;
 
 import Espacial.Binarizacion;
-import Herramientas.HerramientasImagen;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
 public class FrameBinario extends JInternalFrame {
 
@@ -84,7 +82,7 @@ public class FrameBinario extends JInternalFrame {
 
     private void binarizar() {
         int u = umbralSlider.getValue();
-        Image image = Binarizacion.binarizazar(u, iframe.getImagenOriginal());
+        Image image = Binarizacion.binarizar(u, iframe.getImagenOriginal());
         iframe.setImage(image);
     }
 

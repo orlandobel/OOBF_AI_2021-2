@@ -1,20 +1,15 @@
 package Espacial;
 
 import Herramientas.HerramientasImagen;
-import gui.ImageFrame;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Binarizacion {
 
-    private ImageFrame iframe;
 
-    public Binarizacion(ImageFrame iframe) {
-        this.iframe = iframe;
-    }
-
-    public static Image binarizazar(int umbral, Image image) {
+    /* ----------------- Bunarizzación con un umbral ----------------- */
+    public static Image binarizar(int umbral, Image image) {
         BufferedImage bi = HerramientasImagen.toBufferedImage(image);
 
         Color color;
@@ -40,7 +35,8 @@ public class Binarizacion {
         return HerramientasImagen.toImage(bi);
     }
 
-    public static Image binarizazar(int unegro, int ublanco, Image image) {
+    /* ----------------- Bunarizzación dos un umbral ----------------- */
+    public static Image binarizar(int unegro, int ublanco, Image image) {
         BufferedImage bi = HerramientasImagen.toBufferedImage(image);
 
         Color color;
@@ -71,6 +67,7 @@ public class Binarizacion {
         return HerramientasImagen.toImage(bi);
     }
 
+    /* ----------------- Bunarizzación automatica iterativa ----------------- */
     public static Image binarizar(Image image) {
         BufferedImage bi = Filtros.calcularGrices(image); // Obtener escala de grices
         image = HerramientasImagen.toImage(bi); // Imagen en escala de grices
@@ -110,12 +107,52 @@ public class Binarizacion {
             m2 = (a2<=0)? 255 : s2/a2;
 
             u = (m1 + m2) / 2;
-
-            System.out.println("m1="+m1);
-            System.out.println("m2="+m2);
-            System.out.println("u="+u);
         }
 
-        return Binarizacion.binarizazar(u, image);
+        System.out.println("Umbral="+u);
+
+        return Binarizacion.binarizar(u, image);
+    }
+
+    /* ----------------- Bunarizzación automatica de otsu ----------------- */
+    public static Image binarizarOtsu(Image image, double[] h) {
+        int totalHistograma = 0; // Suma de todos los valores del histograma
+        int top = 256; // valos maximo permitido
+        int sumaBB = 0;
+        int wb = 0;
+        double maximo = 0; // interferencia maxima permitida
+        int wf;
+        int mf;
+        double valor;
+        int umbral = 0;
+        int suma1 = 0;
+        int[] rango = new int[top];
+
+        for(int i=0;i<h.length;i++) totalHistograma+=(int)h[i];
+        for(int i=0;i<top;i++) rango[i]=i;
+
+        for(int i=0;i<h.length;i++) suma1+=rango[i]*h[i];
+
+        for(int i=1;i<top;i++) {
+            wf = totalHistograma - wb;
+
+            if(wb > 0 && wf > 0) {
+                mf = (suma1 - sumaBB) / wf;
+
+                valor = wb*wf*((sumaBB/wb)-mf)*((sumaBB/wb)-mf);
+
+                if(valor >= maximo) {
+                    umbral = i;
+                    maximo = valor;
+                }
+            }
+
+            wb = wb + (int)h[i];
+            sumaBB = sumaBB + (i-1) * (int)h[i];
+        }
+
+        System.out.println("Umbral="+umbral);
+
+        return Binarizacion.binarizar(umbral, image);
     }
 }
