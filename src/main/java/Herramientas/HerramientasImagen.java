@@ -1,11 +1,14 @@
 package Herramientas;
 
+import gui.ImageFrame;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class HerramientasImagen {
@@ -63,4 +66,29 @@ public class HerramientasImagen {
 
         return bi;
     }
+
+    public static void saveImage(ImageFrame iframe) {
+        JFileChooser folderChooser = new JFileChooser();
+        folderChooser.setDialogTitle("Ruta de guardado");
+        folderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        Image image = iframe.getImage();
+        String title = iframe.getTitle();
+        String format = title.split("\\.")[1];
+
+        if(folderChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            String folder = folderChooser.getSelectedFile().getAbsolutePath();
+
+            try {
+                File file = new File(folder+"/"+title);
+
+                BufferedImage bi = HerramientasImagen.toBufferedImage(image);
+                ImageIO.write(bi, format, file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }

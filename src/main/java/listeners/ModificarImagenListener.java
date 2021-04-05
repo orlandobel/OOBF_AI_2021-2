@@ -26,52 +26,47 @@ public class ModificarImagenListener implements ActionListener {
         //JInternalFrame iNuevo;
 
         switch(item.getName()) {
-            case "mp":
+            case "mp": // modificar pixeles
                 nuevoFrame(new ModificarFrame(internal));
                 break;
-            case "copiar":
+
+            case "copiar": // cortar fragmento de imagen
                 nuevoFrame(new CopiarFrame(internal, this.jfp));
                 break;
-            case "filtros":
+
+            case "filtros": // filtros negativo, escala de grices y binario (umbral fijo)
                 nuevoFrame(new FiltrosFrame(this.jfp));
                 break;
-            case "histograma":
+
+            case "histograma": // calculo de histogramas
                 nuevoFrame(new SelectHistogramaFrame(this.jfp));
-                /*Histograma h = new Histograma(internal.getImage());
-                HistogramaFrame hf = new HistogramaFrame();
-
-                h.calcularHistogramas();
-
-                hf.agregarSerie("Rojo", h.getR());
-                hf.agregarSerie("Verde", h.getG());
-                hf.agregarSerie("Azul", h.getB());
-
-                Color[] colores = {Color.RED, Color.GREEN, Color.BLUE};
-
-                hf.crearGrafica(colores);
-                hf.mostrarGrafica();
-
-                jfp.getJdpPrincipal().add(hf);*/
                 break;
-            case "binarizar":
+
+            case "binarizar": // binarización con un umbral
                 nuevoFrame(new FrameBinario(internal));
                 break;
-            case "binarizar2":
+
+            case "binarizar2": // binarización con dos umbrales
                 nuevoFrame(new FrameBinario2(internal));
                 break;
-            case "binarizar3":
+
+            case "binarizar3": // umbraliazdor metodo iterativco
                 ImageFrame iframe = jfp.getActiveImageFrame();
                 Image nimage = Binarizacion.binarizar(iframe.getImagenOriginal());
                 iframe.setImage(nimage);
+                setImageTitle(iframe, "binarizado iterativo");
                 break;
-            case "binarizar4":
+
+            case "binarizar4": // umbralizador metodod e otsu
                 ImageFrame ifr = jfp.getActiveImageFrame();
                 Histograma h = new Histograma(ifr.getImagenOriginal());
                 h.calcularHistogramas();
                 Image nimg = Binarizacion.binarizarOtsu(ifr.getImagenOriginal(), h.getR());
                 ifr.setImage(nimg);
+                setImageTitle(ifr, "binarizado otsu");
                 break;
-            case "iluminacion":
+
+            case "iluminacion": // cambio de la iluminación de la imagen
                 nuevoFrame(new IluminacionFrame(this.jfp));
                 break;
             default:
@@ -88,6 +83,15 @@ public class ModificarImagenListener implements ActionListener {
             } catch(Exception e) {
                 e.printStackTrace();
             }
+    }
+
+    private void setImageTitle(ImageFrame iframe, String modTitle) {
+        String title = iframe.getTitle();
+        String[] split = title.split("\\.");
+
+        title = split[0] + " - " + modTitle + "." + split[1];
+
+        iframe.setTitle(title);
     }
     
 }

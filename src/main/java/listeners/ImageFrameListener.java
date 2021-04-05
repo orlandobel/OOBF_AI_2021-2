@@ -7,6 +7,7 @@ import Herramientas.HerramientasImagen;
 import gui.ImageFrame;
 import gui.JFramePrincipal;
 
+import javax.swing.*;
 import java.awt.Image;
 import java.beans.PropertyVetoException;
 
@@ -20,18 +21,32 @@ public class ImageFrameListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Image image = HerramientasImagen.openImage();
-        String titulo = HerramientasImagen.imageName;
+        JMenuItem item = (JMenuItem)e.getSource();
 
-        ImageFrame nuevo = new ImageFrame(titulo, image, jfp.getListener());
-        nuevo.setVisible(true);
-        this.jfp.getJdpPrincipal().add(nuevo);
+        switch(item.getName()) {
+            case "open":
+                Image image = HerramientasImagen.openImage();
+                String titulo = HerramientasImagen.imageName;
 
-        try {
-            nuevo.setSelected(true);
-        } catch (PropertyVetoException propertyVetoException) {
-            propertyVetoException.printStackTrace();
+                ImageFrame nuevo = new ImageFrame(titulo, image, jfp.getListener());
+                nuevo.setVisible(true);
+                this.jfp.getJdpPrincipal().add(nuevo);
+
+                try {
+                    nuevo.setSelected(true);
+                } catch (PropertyVetoException propertyVetoException) {
+                    propertyVetoException.printStackTrace();
+                }
+                break;
+            case "save":
+                HerramientasImagen.saveImage(this.jfp.getActiveImageFrame());
+
+                break;
+            default:
+                System.out.println("Not suported yet");
+                break;
         }
+
     }
     
 }

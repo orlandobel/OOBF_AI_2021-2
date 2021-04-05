@@ -11,6 +11,7 @@ import javax.swing.WindowConstants;
 import listeners.*;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class JFramePrincipal extends JFrame  {
 
@@ -20,7 +21,6 @@ public class JFramePrincipal extends JFrame  {
     private static final long serialVersionUID = 1L;
 
     private JDesktopPane jdpPrincipal;
-    private InternalFrameListener internalListener;
     private ImageFrame activeImageFrame;
     
     private JMenuBar menubar;
@@ -31,6 +31,8 @@ public class JFramePrincipal extends JFrame  {
     private JMenu subsubmenuBinarizacion; // sub sub menu para binarizaciones automaticas
 
     private JMenuItem itemAbrirImagen;
+    private JMenuItem itemGuardar;
+
     private JMenuItem itemModificar;
     private JMenuItem itemCopiar;
     private JMenuItem itemHistogramaCompleto;
@@ -41,6 +43,8 @@ public class JFramePrincipal extends JFrame  {
     private JMenuItem itemBinarizarOtsu;
     private JMenuItem itemIluminacion;
 
+    private ImageFrameListener iframeListener;
+    private InternalFrameListener internalListener;
     private ModificarImagenListener mlistener;
 
     public JFramePrincipal () {
@@ -49,6 +53,7 @@ public class JFramePrincipal extends JFrame  {
     }
 
     private void initComponents() {
+        iframeListener = new ImageFrameListener(this);
         mlistener = new ModificarImagenListener(this);
         jdpPrincipal = new JDesktopPane();
 
@@ -60,6 +65,7 @@ public class JFramePrincipal extends JFrame  {
         subsubmenuBinarizacion = new JMenu();
 
         itemAbrirImagen = new JMenuItem();
+        itemGuardar = new JMenuItem();
         itemModificar = new JMenuItem();
         itemCopiar = new JMenuItem();
         itemHistogramaCompleto = new JMenuItem();
@@ -91,24 +97,27 @@ public class JFramePrincipal extends JFrame  {
         subsubmenuBinarizacion.setText("Binarización automatica");
         /* --------------------------------- */
 
-        itemAbrirImagen.setText("Abrir imágen");
-        itemAbrirImagen.setName("open");
-        itemAbrirImagen.addActionListener(new ImageFrameListener(this));
-        menuFile.add(itemAbrirImagen);
+        /* -- items del menu file --*/
+        initJMenuItem(itemAbrirImagen, "Abrir imagen", "open", menuFile, iframeListener);
+        initJMenuItem(itemGuardar, "Guardar ultimo seleccionado", "save", menuFile, iframeListener);
+        /* -------------------------*/
 
-        initJMenuItem(itemModificar, "Modificar pixeles", "mp", menuEspacial);
-        initJMenuItem(itemCopiar, "Copiar fragmento de imágen", "copiar", menuEspacial);
-        initJMenuItem(itemHistogramaCompleto, "Histograma", "histograma", menuEspacial);
-        initJMenuItem(itemFiltros, "Filtros", "filtros", menuEspacial);
+        /* -- items del menu espacial --*/
+        initJMenuItem(itemModificar, "Modificar pixeles", "mp", menuEspacial, mlistener);
+        initJMenuItem(itemCopiar, "Copiar fragmento de imágen", "copiar", menuEspacial, mlistener);
+        initJMenuItem(itemHistogramaCompleto, "Histograma", "histograma", menuEspacial, mlistener);
+        initJMenuItem(itemFiltros, "Filtros", "filtros", menuEspacial, mlistener);
+        initJMenuItem(itemBinarizar, "Binarizar imágen", "binarizar", submenuBinarizacion, mlistener);
+        initJMenuItem(itemBinarizar2, "Binarizar imágen con 2 umbrales", "binarizar2", submenuBinarizacion, mlistener);
+        initJMenuItem(itemBinarizarAutomatico, "Método iterativo", "binarizar3", subsubmenuBinarizacion, mlistener);
+        initJMenuItem(itemBinarizarOtsu, "Método otsu", "binarizar4", subsubmenuBinarizacion, mlistener);
+        initJMenuItem(itemIluminacion, "Iluminacion", "iluminacion", menuEspacial, mlistener);
+        /* -----------------------------*/
 
-        menuEspacial.add(submenuBinarizacion);
-        initJMenuItem(itemBinarizar, "Binarizar imágen", "binarizar", submenuBinarizacion);
-        initJMenuItem(itemBinarizar2, "Binarizar imágen con 2 umbrales", "binarizar2", submenuBinarizacion);
+        /* -- añadiendo submenus -- */
         submenuBinarizacion.add(subsubmenuBinarizacion);
-        initJMenuItem(itemBinarizarAutomatico, "Método iterativo", "binarizar3", subsubmenuBinarizacion);
-        initJMenuItem(itemBinarizarOtsu, "Método otsu", "binarizar4", subsubmenuBinarizacion);
-
-        initJMenuItem(itemIluminacion, "Iluminacion", "iluminacion", menuEspacial);
+        menuEspacial.add(submenuBinarizacion);
+        /* ------------------------ */
 
         /* -- Añadir menus a la barra de menus -- */
         menubar.add(menuFile);
@@ -131,10 +140,10 @@ public class JFramePrincipal extends JFrame  {
         pack();
     }
 
-    private void initJMenuItem(JMenuItem item, String text, String name, JMenu menu) {
+    private void initJMenuItem(JMenuItem item, String text, String name, JMenu menu, ActionListener listener) {
         item.setText(text);
         item.setName(name);
-        item.addActionListener(mlistener);
+        item.addActionListener(listener);
 
         menu.add(item);
     }
