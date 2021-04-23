@@ -1,11 +1,24 @@
-ImagenAnalisis20212.java
- ImagenAnalisis20212
-gui/FrameBinario.java
- gui.FrameBinario
- gui.FrameBinario$1
- gui.FrameBinario$2
+gui/HistogramaImagen/HistogramaFrame.java
+ gui.HistogramaImagen.HistogramaFrame
+gui/HistogramaImagen/FramePrincipal.java
+ gui.HistogramaImagen.FramePrincipal
+ gui.HistogramaImagen.FramePrincipal$1
+Espacial/Filtros.java
+ Espacial.Filtros
+gui/CopiarFrame.java
+ gui.CopiarFrame
+ gui.CopiarFrame$1
+listeners/ImageFrameListener.java
+ listeners.ImageFrameListener
 listeners/HistogramaImagen/AbrirListener.java
  listeners.HistogramaImagen.AbrirListener
+gui/FiltrosFrame.java
+ gui.FiltrosFrame
+ gui.FiltrosFrame$1
+ gui.FiltrosFrame$2
+ gui.FiltrosFrame$3
+Herramientas/HerramientasImagen.java
+ Herramientas.HerramientasImagen
 gui/IluminacionFrame.java
  gui.IluminacionFrame
  gui.IluminacionFrame$1
@@ -16,42 +29,34 @@ gui/FrameBinario2.java
  gui.FrameBinario2
  gui.FrameBinario2$1
  gui.FrameBinario2$2
-gui/HistogramaImagen/FramePrincipal.java
- gui.HistogramaImagen.FramePrincipal
- gui.HistogramaImagen.FramePrincipal$1
+Espacial/Iluminacion.java
+ Espacial.Iluminacion
+gui/ModificarFrame.java
+ gui.ModificarFrame
+ gui.ModificarFrame$1
 listeners/InternalFrameListener.java
  listeners.InternalFrameListener
 gui/JFramePrincipal.java
  gui.JFramePrincipal
  gui.JFramePrincipal$1
-gui/ModificarFrame.java
- gui.ModificarFrame
- gui.ModificarFrame$1
-Espacial/Iluminacion.java
- Espacial.Iluminacion
-gui/FiltrosFrame.java
- gui.FiltrosFrame
- gui.FiltrosFrame$1
- gui.FiltrosFrame$2
- gui.FiltrosFrame$3
-listeners/ImageFrameListener.java
- listeners.ImageFrameListener
-Espacial/Filtros.java
- Espacial.Filtros
-gui/CopiarFrame.java
- gui.CopiarFrame
- gui.CopiarFrame$1
-Herramientas/HerramientasImagen.java
- Herramientas.HerramientasImagen
-Espacial/Histograma.java
- Espacial.Histograma
+gui/FrameBinario.java
+ gui.FrameBinario
+ gui.FrameBinario$1
+ gui.FrameBinario$2
 Espacial/Binarizacion.java
  Espacial.Binarizacion
-listeners/ModificarImagenListener.java
- listeners.ModificarImagenListener
 listeners/HistogramaImagen/HistogramaListener.java
  listeners.HistogramaImagen.HistogramaListener
+Espacial/Histograma.java
+ Espacial.Histograma
 gui/SelectHistogramaFrame.java
  gui.SelectHistogramaFrame
-gui/HistogramaImagen/HistogramaFrame.java
- gui.HistogramaImagen.HistogramaFrame
+listeners/ModificarImagenListener.java
+ listeners.ModificarImagenListener
+ImagenAnalisis20212.java
+ ImagenAnalisis20212
+Espacial/Expansion.java
+ Espacial.Expansion
+gui/ExpandirFrame.java
+ gui.ExpandirFrame
+ gui.ExpandirFrame$1

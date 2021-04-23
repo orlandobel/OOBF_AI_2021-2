@@ -32,6 +32,7 @@ public class JFramePrincipal extends JFrame  {
 
     private JMenuItem itemAbrirImagen;
     private JMenuItem itemGuardar;
+    private JMenuItem itemRestaurar;
 
     private JMenuItem itemModificar;
     private JMenuItem itemCopiar;
@@ -42,6 +43,7 @@ public class JFramePrincipal extends JFrame  {
     private JMenuItem itemBinarizarAutomatico;
     private JMenuItem itemBinarizarOtsu;
     private JMenuItem itemIluminacion;
+    private JMenuItem itemExpancion;
 
     private ImageFrameListener iframeListener;
     private InternalFrameListener internalListener;
@@ -66,6 +68,7 @@ public class JFramePrincipal extends JFrame  {
 
         itemAbrirImagen = new JMenuItem();
         itemGuardar = new JMenuItem();
+        itemRestaurar = new JMenuItem();
         itemModificar = new JMenuItem();
         itemCopiar = new JMenuItem();
         itemHistogramaCompleto = new JMenuItem();
@@ -75,6 +78,7 @@ public class JFramePrincipal extends JFrame  {
         itemBinarizarAutomatico = new JMenuItem();
         itemBinarizarOtsu = new JMenuItem();
         itemIluminacion = new JMenuItem();
+        itemExpancion = new JMenuItem();
 
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -100,9 +104,10 @@ public class JFramePrincipal extends JFrame  {
         /* -- items del menu file --*/
         initJMenuItem(itemAbrirImagen, "Abrir imagen", "open", menuFile, iframeListener);
         initJMenuItem(itemGuardar, "Guardar ultimo seleccionado", "save", menuFile, iframeListener);
+        initJMenuItem(itemRestaurar, "Restaurar imagen original", "restaurar", menuFile, iframeListener);
         /* -------------------------*/
 
-        /* -- items del menu espacial --*/
+        /* ----------------------------------------- items del menu espacial -----------------------------------------*/
         initJMenuItem(itemModificar, "Modificar pixeles", "mp", menuEspacial, mlistener);
         initJMenuItem(itemCopiar, "Copiar fragmento de imágen", "copiar", menuEspacial, mlistener);
         initJMenuItem(itemHistogramaCompleto, "Histograma", "histograma", menuEspacial, mlistener);
@@ -112,12 +117,14 @@ public class JFramePrincipal extends JFrame  {
         initJMenuItem(itemBinarizarAutomatico, "Método iterativo", "binarizar3", subsubmenuBinarizacion, mlistener);
         initJMenuItem(itemBinarizarOtsu, "Método otsu", "binarizar4", subsubmenuBinarizacion, mlistener);
         initJMenuItem(itemIluminacion, "Iluminacion", "iluminacion", menuEspacial, mlistener);
-        /* -----------------------------*/
-
-        /* -- añadiendo submenus -- */
+            /* -- añadiendo submenus -- */
         submenuBinarizacion.add(subsubmenuBinarizacion);
         menuEspacial.add(submenuBinarizacion);
-        /* ------------------------ */
+            /* ------------------------ */
+        initJMenuItem(itemExpancion, "Expandir imagen", "exp", menuEspacial, mlistener);
+        /* -----------------------------------------------------------------------------------------------------------*/
+
+
 
         /* -- Añadir menus a la barra de menus -- */
         menubar.add(menuFile);

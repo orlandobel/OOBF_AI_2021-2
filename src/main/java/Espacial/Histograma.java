@@ -8,13 +8,20 @@ import java.awt.image.BufferedImage;
 public class Histograma {
 
     private Image imagen;
+
     private double[] r;
     private double[] g;
     private double[] b;
     private double[] gr;
 
+    private int totalPixeles;
+    private int totalR;
+    private int totalG;
+    private int totalB;
+
     public Histograma(Image imagen) {
         this.imagen = imagen;
+
         this.r = new double[256];
         this.g = new double[256];
         this.b = new double[256];
@@ -28,8 +35,8 @@ public class Histograma {
         Color gris;
 
         // recorrer la imagen
-        for(int x=0; x<bi.getWidth();x++)
-            for(int y=0; y< bi.getHeight();y++){
+        for(int x=0; x<bi.getWidth();x++) {
+            for (int y = 0; y < bi.getHeight(); y++) {
                 // extraer el color
                 color = new Color(bi.getRGB(x, y));
                 gris = new Color(biGrices.getRGB(x, y));
@@ -43,8 +50,19 @@ public class Histograma {
                 this.g[g]++;
                 this.b[b]++;
                 this.gr[gr]++;
-            }
 
+                totalPixeles++;
+
+                if(r != 0)
+                    totalR++;
+
+                if(g != 0)
+                    totalG++;
+
+                if(b != 0)
+                    totalB++;
+            }
+        }
     }
 
     /**
@@ -70,6 +88,22 @@ public class Histograma {
 
     public double[] getGr() {
         return gr;
+    }
+
+    public int getTotalPixeles() {
+        return this.totalPixeles;
+    }
+
+    public int getTotalR() {
+        return this.totalR;
+    }
+
+    public int getTotalG() {
+        return this.totalG;
+    }
+
+    public int getTotalB() {
+        return this.totalB;
     }
 
 }

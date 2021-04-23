@@ -40,7 +40,9 @@ public class ImageFrameListener implements ActionListener {
                 break;
             case "save":
                 HerramientasImagen.saveImage(this.jfp.getActiveImageFrame());
-
+                break;
+            case "restaurar":
+                jfp.getActiveImageFrame().reiniciarImagen();
                 break;
             default:
                 System.out.println("Not suported yet");

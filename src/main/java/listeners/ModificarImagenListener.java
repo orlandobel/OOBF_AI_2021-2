@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import Espacial.Binarizacion;
+import Espacial.Expansion;
 import Espacial.Histograma;
 import gui.*;
-import gui.HistogramaImagen.HistogramaFrame;
 
 public class ModificarImagenListener implements ActionListener {
 
@@ -68,6 +68,10 @@ public class ModificarImagenListener implements ActionListener {
 
             case "iluminacion": // cambio de la iluminación de la imagen
                 nuevoFrame(new IluminacionFrame(this.jfp));
+                break;
+
+            case "exp":
+                nuevoFrame(new ExpandirFrame(this.jfp));
                 break;
             default:
                 System.out.println(item.getText());
