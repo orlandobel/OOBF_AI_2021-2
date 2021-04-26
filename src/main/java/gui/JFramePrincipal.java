@@ -44,6 +44,7 @@ public class JFramePrincipal extends JFrame  {
     private JMenuItem itemBinarizarOtsu;
     private JMenuItem itemIluminacion;
     private JMenuItem itemExpancion;
+    private JMenuItem itemConvolucion;
 
     private ImageFrameListener iframeListener;
     private InternalFrameListener internalListener;
@@ -79,7 +80,7 @@ public class JFramePrincipal extends JFrame  {
         itemBinarizarOtsu = new JMenuItem();
         itemIluminacion = new JMenuItem();
         itemExpancion = new JMenuItem();
-
+        itemConvolucion = new JMenuItem();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,10 +119,11 @@ public class JFramePrincipal extends JFrame  {
         initJMenuItem(itemBinarizarOtsu, "Método otsu", "binarizar4", subsubmenuBinarizacion, mlistener);
         initJMenuItem(itemIluminacion, "Iluminacion", "iluminacion", menuEspacial, mlistener);
             /* -- añadiendo submenus -- */
-        submenuBinarizacion.add(subsubmenuBinarizacion);
-        menuEspacial.add(submenuBinarizacion);
+            submenuBinarizacion.add(subsubmenuBinarizacion);
+            menuEspacial.add(submenuBinarizacion);
             /* ------------------------ */
         initJMenuItem(itemExpancion, "Expandir imagen", "exp", menuEspacial, mlistener);
+        initJMenuItem(itemConvolucion, "Convolucion", "conv", menuEspacial, mlistener);
         /* -----------------------------------------------------------------------------------------------------------*/
 
 

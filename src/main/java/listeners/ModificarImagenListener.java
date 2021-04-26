@@ -73,6 +73,9 @@ public class ModificarImagenListener implements ActionListener {
             case "exp":
                 nuevoFrame(new ExpandirFrame(this.jfp));
                 break;
+            case "conv":
+                nuevoFrame(new ConvolucionFrame(this.jfp));
+                break;
             default:
                 System.out.println(item.getText());
         }
