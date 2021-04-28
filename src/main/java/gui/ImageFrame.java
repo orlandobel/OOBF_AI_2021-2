@@ -47,9 +47,6 @@ public class ImageFrame extends JInternalFrame {
     }
 
     private void InitComponents() {
-        height = 200;
-        width = 200;
-
         setBackground(new Color(102,102,225));
         setClosable(this.closable);
         setIconifiable(this.closable);
@@ -58,7 +55,6 @@ public class ImageFrame extends JInternalFrame {
 
         addInternalFrameListener(listener);
 
-        this.setSize(width, height);
         this.add(this.label);
         this.repaint();
     }
@@ -97,17 +93,5 @@ public class ImageFrame extends JInternalFrame {
 
     public Image getImage() {
         return this.imagen;
-    }
-
-    public int getHeight() {
-        return this.height;
-    }
-
-    public int getWidth() {
-        return this.width;
-    }
-
-    public static void main(String[] args) {
-        new ImageFrame();
     }
 }

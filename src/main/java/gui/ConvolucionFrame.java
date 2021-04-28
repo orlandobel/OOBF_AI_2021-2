@@ -6,35 +6,34 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class ConvolucionFrame extends JInternalFrame {
-
-    private boolean activo;
-
     private JFramePrincipal jfp;
 
-    private JLabel labelKernel;
-    private JComboBox<String> opciones;
+    private JSpinner s00;
+    private JSpinner s01;
+    private JSpinner s02;
+    private JSpinner s10;
+    private JSpinner s11;
+    private JSpinner s12;
+    private JSpinner s20;
+    private JSpinner s21;
+    private JSpinner s22;
+
+    private JLabel labelOffset;
+    private JLabel labelDivisor;
+
+    private JSpinner sOffset;
+    private JSpinner sDivisor;
 
     private JPanel panelKernel;
-
-    private JTextField tf00;
-    private JTextField tf01;
-    private JTextField tf02;
-    private JTextField tf10;
-    private JTextField tf11;
-    private JTextField tf12;
-    private JTextField tf20;
-    private JTextField tf21;
-    private JTextField tf22;
+    private JPanel panelModificadores;
 
     private JButton btnConvolucion;
+    private JButton btnReiniciarMatriz;
 
     public ConvolucionFrame(JFramePrincipal jfp) {
         this.jfp = jfp;
-        activo = false;
         initComponents();
     }
 
@@ -42,42 +41,30 @@ public class ConvolucionFrame extends JInternalFrame {
         setClosable(true);
         setIconifiable(true);
 
-        String[] opt = {
-                "Enfocar",
-                "Desenfocar",
-                "Realzar bordes",
-                "Detectar bordes",
-                "Repujado",
-                "Kernel manual"
-        };
+        s00 = new JSpinner();
+        s01 = new JSpinner();
+        s02 = new JSpinner();
+        s10 = new JSpinner();
+        s11 = new JSpinner();
+        s12 = new JSpinner();
+        s20 = new JSpinner();
+        s21 = new JSpinner();
+        s22 = new JSpinner();
 
-        labelKernel = new JLabel();
-        opciones = new JComboBox<>(opt);
-        btnConvolucion = new JButton();
+        labelOffset = new JLabel();
+        labelDivisor = new JLabel();
+
+        sOffset = new JSpinner();
+        sDivisor = new JSpinner();
+
         panelKernel = new JPanel();
+        panelModificadores = new JPanel();
 
-        tf00 = new JTextField();
-        tf01 = new JTextField();
-        tf02 = new JTextField();
-        tf10 = new JTextField();
-        tf11 = new JTextField();
-        tf12 = new JTextField();
-        tf20 = new JTextField();
-        tf21 = new JTextField();
-        tf22 = new JTextField();
+        labelOffset.setText("Offset:");
+        labelDivisor.setText("Divisor:");
 
-        labelKernel.setText("Kernel de convolución: ");
-
-        opciones.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(opciones.getSelectedIndex() == 5 && !activo) {
-                    cambiarKernel(true);
-                } else if(opciones.getSelectedIndex() != 5 && activo) {
-                    cambiarKernel(false);
-                }
-            }
-        });
+        btnConvolucion = new JButton();
+        btnReiniciarMatriz = new JButton();
 
         btnConvolucion.setText("Aplicar");
         btnConvolucion.addActionListener(new ActionListener() {
@@ -87,15 +74,13 @@ public class ConvolucionFrame extends JInternalFrame {
             }
         });
 
-        initTextFields(tf00);
-        initTextFields(tf01);
-        initTextFields(tf02);
-        initTextFields(tf10);
-        initTextFields(tf11);
-        initTextFields(tf12);
-        initTextFields(tf20);
-        initTextFields(tf21);
-        initTextFields(tf22);
+        btnReiniciarMatriz.setText("Reiniciar matriz");
+        btnReiniciarMatriz.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                reiniciar();
+            }
+        });
 
         GroupLayout panelLayout = new GroupLayout(panelKernel);
         panelKernel.setLayout(panelLayout);
@@ -103,51 +88,70 @@ public class ConvolucionFrame extends JInternalFrame {
                 panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(panelLayout.createSequentialGroup()
 
-                        .addComponent(tf00, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s00, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf01, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s01, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf02, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(s02, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelLayout.createSequentialGroup()
-                        .addComponent(tf10, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s10, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf11, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s11, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf12, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(s12, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelLayout.createSequentialGroup()
-                        .addComponent(tf20, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s20, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf21, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s21, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf22, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s22, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
         );
         panelLayout.setVerticalGroup(
                 panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(panelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tf00, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s00, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf10, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s10, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf20, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
+                        .addComponent(s20, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tf01, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s01, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf11, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s11, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf21, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
+                        .addComponent(s21, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tf02, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s02, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf12, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(s12, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(tf22, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
+                        .addComponent(s22, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+        );
+
+        GroupLayout mlayout = new GroupLayout(panelModificadores);
+        panelModificadores.setLayout(mlayout);
+        mlayout.setHorizontalGroup(
+                mlayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(mlayout.createSequentialGroup()
+                        .addContainerGap(16, Short.MAX_VALUE)
+                        .addComponent(labelOffset, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                        .addGap(8,8,8)
+                        .addComponent(sOffset, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+                        .addGap(8,8,8)
+                        .addComponent(labelDivisor, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                        .addGap(8,8,8)
+                        .addComponent(sDivisor, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE))
+        );
+        mlayout.setVerticalGroup(
+                mlayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(labelOffset, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sOffset, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelDivisor, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sDivisor, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -155,39 +159,34 @@ public class ConvolucionFrame extends JInternalFrame {
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(
-                                layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(labelKernel, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(1, 1, 1)
-                                        .addComponent(opciones, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(16, Short.MAX_VALUE)
-                        )
-                        .addGroup(
-                                layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(btnConvolucion, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(16, Short.MAX_VALUE)
-                        ))
-                .addComponent(panelKernel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addContainerGap(16, Short.MAX_VALUE)
+                        .addComponent(panelKernel)
+                        .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(16, Short.MAX_VALUE)
+                        .addComponent(panelModificadores)
+                        .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(16, Short.MAX_VALUE)
+                        .addComponent(btnConvolucion, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                        .addGap(8,8,8)
+                        .addComponent(btnReiniciarMatriz, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(16, Short.MAX_VALUE))
 
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(
                         layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(
-                                layout.createParallelGroup()
-                                        .addComponent(labelKernel, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(8, 8, 8)
-                                        .addComponent(opciones, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        )
-                        .addGap(8, 8, 8)
-                        .addComponent(btnConvolucion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(16, Short.MAX_VALUE)
+                        .addComponent(panelKernel)
+                        .addGap(8,8,8)
+                        .addComponent(panelModificadores)
+                        .addGap(8,8,8)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(btnConvolucion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                .addGap(8,8,8)
+                                .addComponent(btnReiniciarMatriz, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(16, Short.MAX_VALUE)
                 )
                 .addComponent(panelKernel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -196,63 +195,44 @@ public class ConvolucionFrame extends JInternalFrame {
         pack();
     }
 
-    private void initTextFields(JTextField tf) {
-        tf.setEditable(false);
-        tf.setText("0");
-        tf.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if(!Character.isDigit(e.getKeyChar()) &&
-                        e.getKeyChar() != '-')
-                    e.consume();
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        });
-    }
-
-    private void cambiarKernel(boolean estado) {
-        tf00.setEditable(estado);
-        tf01.setEditable(estado);
-        tf02.setEditable(estado);
-        tf10.setEditable(estado);
-        tf11.setEditable(estado);
-        tf12.setEditable(estado);
-        tf20.setEditable(estado);
-        tf21.setEditable(estado);
-        tf22.setEditable(estado);
-
-        activo = estado;
+    private void reiniciar() {
+        s00.setValue(0);
+        s01.setValue(0);
+        s02.setValue(0);
+        s10.setValue(0);
+        s11.setValue(0);
+        s12.setValue(0);
+        s20.setValue(0);
+        s21.setValue(0);
+        s22.setValue(0);
+        sOffset.setValue(0);
+        sDivisor.setValue(0);
     }
 
     private void aplicar() {
         ImageFrame iframe = jfp.getActiveImageFrame();
-        Image image = iframe.getImage();
-        int[][] kernel = null;
+        Image io = iframe.getImagenOriginal();
+        int offset = Integer.parseInt(sOffset.getValue().toString());
+        int divisor = Integer.parseInt(sDivisor.getValue().toString());
+        int[][] kernel = {
+                {
+                    Integer.parseInt(s00.getValue().toString()),
+                    Integer.parseInt(s01.getValue().toString()),
+                    Integer.parseInt(s02.getValue().toString()),
+                },
+                {
+                        Integer.parseInt(s10.getValue().toString()),
+                        Integer.parseInt(s11.getValue().toString()),
+                        Integer.parseInt(s12.getValue().toString()),
+                },
+                {
+                        Integer.parseInt(s20.getValue().toString()),
+                        Integer.parseInt(s21.getValue().toString()),
+                        Integer.parseInt(s22.getValue().toString()),
+                }
+        };
 
-        if(opciones.getSelectedIndex() == 5) {
-            kernel = new int[3][3];
-
-            kernel[0][0] = Integer.parseInt(tf00.getText());
-            kernel[0][1] = Integer.parseInt(tf01.getText());
-            kernel[0][2] = Integer.parseInt(tf02.getText());
-            kernel[1][0] = Integer.parseInt(tf10.getText());
-            kernel[1][1] = Integer.parseInt(tf11.getText());
-            kernel[1][2] = Integer.parseInt(tf12.getText());
-            kernel[2][0] = Integer.parseInt(tf20.getText());
-            kernel[2][1] = Integer.parseInt(tf21.getText());
-            kernel[2][2] = Integer.parseInt(tf22.getText());
-        }
-
-        Image nimage = Convolucion.convolucion(image, opciones.getSelectedIndex(), 0, kernel);
-        iframe.setImage(nimage);
+        Image ni = Convolucion.convolucion(io, offset, divisor, kernel);
+        iframe.setImage(ni);
     }
 }
