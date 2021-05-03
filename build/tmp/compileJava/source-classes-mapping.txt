@@ -1,15 +1,3 @@
-gui/HistogramaImagen/HistogramaFrame.java
- gui.HistogramaImagen.HistogramaFrame
-ImagenAnalisis20212.java
- ImagenAnalisis20212
-Espacial/Filtros.java
- Espacial.Filtros
-Espacial/Histograma.java
- Espacial.Histograma
-Espacial/Binarizacion.java
- Espacial.Binarizacion
-Espacial/Expansion.java
- Espacial.Expansion
 gui/FiltrosFrame.java
  gui.FiltrosFrame
  gui.FiltrosFrame$1
@@ -29,9 +17,6 @@ gui/FrameBinario2.java
  gui.FrameBinario2$2
 Espacial/Iluminacion.java
  Espacial.Iluminacion
-gui/ExpandirFrame.java
- gui.ExpandirFrame
- gui.ExpandirFrame$1
 listeners/InternalFrameListener.java
  listeners.InternalFrameListener
 gui/SelectHistogramaFrame.java
@@ -39,30 +24,46 @@ gui/SelectHistogramaFrame.java
 gui/ModificarFrame.java
  gui.ModificarFrame
  gui.ModificarFrame$1
+gui/HistogramaImagen/HistogramaFrame.java
+ gui.HistogramaImagen.HistogramaFrame
 gui/FrameBinario.java
  gui.FrameBinario
  gui.FrameBinario$1
  gui.FrameBinario$2
-gui/HistogramaImagen/FramePrincipal.java
- gui.HistogramaImagen.FramePrincipal
- gui.HistogramaImagen.FramePrincipal$1
+Espacial/Binarizacion.java
+ Espacial.Binarizacion
 listeners/ImageFrameListener.java
  listeners.ImageFrameListener
 gui/CopiarFrame.java
  gui.CopiarFrame
  gui.CopiarFrame$1
-listeners/HistogramaImagen/AbrirListener.java
- listeners.HistogramaImagen.AbrirListener
 listeners/HistogramaImagen/HistogramaListener.java
  listeners.HistogramaImagen.HistogramaListener
+ImagenAnalisis20212.java
+ ImagenAnalisis20212
+listeners/HistogramaImagen/AbrirListener.java
+ listeners.HistogramaImagen.AbrirListener
+Espacial/Expansion.java
+ Espacial.Expansion
+gui/ExpandirFrame.java
+ gui.ExpandirFrame
+ gui.ExpandirFrame$1
+listeners/ModificarImagenListener.java
+ listeners.ModificarImagenListener
+Espacial/Filtros.java
+ Espacial.Filtros
+Espacial/Histograma.java
+ Espacial.Histograma
 gui/JFramePrincipal.java
  gui.JFramePrincipal
  gui.JFramePrincipal$1
+gui/HistogramaImagen/FramePrincipal.java
+ gui.HistogramaImagen.FramePrincipal
+ gui.HistogramaImagen.FramePrincipal$1
 Espacial/Convolucion.java
  Espacial.Convolucion
 gui/ConvolucionFrame.java
  gui.ConvolucionFrame
  gui.ConvolucionFrame$1
  gui.ConvolucionFrame$2
-listeners/ModificarImagenListener.java
- listeners.ModificarImagenListener
+ gui.ConvolucionFrame$3

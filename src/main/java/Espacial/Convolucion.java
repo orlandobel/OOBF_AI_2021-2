@@ -8,6 +8,64 @@ import java.awt.image.BufferedImage;
 
 public class Convolucion {
 
+    private static int[][] kirsch1 = {{-3, -3, 5}, {-3, 0, 5}, {-3, -3, 5}};
+    private static int[][] kirsch2 = {{-3, 5, 5}, {-3, 0, 5}, {-3, -3, -3}};
+    private static int[][] kirsch3 = {{5, 5, 5}, {-3, 0, -3}, {-3, -3, -3}};
+    private static int[][] kirsch4 = {{5, 5, -3}, {5, 0, -3}, {-3, -3, -3}};
+    private static int[][] kirsch5 = {{5, -3, -3}, {5, 0, -3}, {5, -3, -3}};
+    private static int[][] kirsch6 = {{-3, -3, -3}, {5, 0, -3}, {5, 5, -3}};
+    private static int[][] kirsch7 = {{-3, -3, -3}, {-3, 0, -3}, {5, 5, 5}};
+    private static int[][] kirsch8 = {{-3, -3, -3}, {-3, 0, 5}, {-3, 5, 5}};
+    public static int[][][] arregloMascaras = {kirsch1, kirsch2, kirsch3,
+            kirsch4, kirsch5, kirsch6,
+            kirsch7, kirsch8};
+
+    public static Image aplicarKirsch(Image image) {
+        BufferedImage[] bis = new BufferedImage[8];
+        BufferedImage nbi = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        Color color;
+        Color nColor;
+
+        for(int i=0; i<8; i++) {
+            bis[i] = HerramientasImagen.toBufferedImage(convolucion(image, 0, 0,arregloMascaras[i]));
+        }
+
+        for(int x=0; x<nbi.getWidth(); x++) {
+            for(int y=0; y<nbi.getHeight(); y++) {
+                int r = 0, g = 0, b = 0;
+
+                for(BufferedImage bi : bis) {
+                    color = new Color(bi.getRGB(x, y));
+
+                    r+= color.getRed();
+                    g+= color.getGreen();
+                    b+= color.getBlue();
+                }
+
+                nColor = new Color(validar(r), validar(g), validar(b));
+
+                nbi.setRGB(x, y, nColor.getRGB());
+            }
+        }
+
+        /*for(int x=0; x<nbi.getWidth(); x++) {
+            for(int y=0; y<nbi.getHeight(); y++) {
+                int rgb = bis[0].getRGB(x, y);
+                rgb += bis[1].getRGB(x, y);
+                rgb += bis[2].getRGB(x, y);
+                rgb += bis[3].getRGB(x, y);
+                rgb += bis[4].getRGB(x, y);
+                rgb += bis[5].getRGB(x, y);
+                rgb += bis[6].getRGB(x, y);
+                rgb += bis[7].getRGB(x, y);
+
+                nbi.setRGB(x, y, rgb);
+            }
+        }*/
+
+        return HerramientasImagen.toImage(nbi);
+    }
+
     public static Image convolucion(Image image, int offset, int divisor, int[][] kernel) {
         BufferedImage bi = HerramientasImagen.toBufferedImage(image);
         BufferedImage nbi = new BufferedImage(bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_INT_RGB);

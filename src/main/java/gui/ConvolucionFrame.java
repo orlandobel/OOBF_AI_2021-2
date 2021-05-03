@@ -30,6 +30,7 @@ public class ConvolucionFrame extends JInternalFrame {
     private JPanel panelModificadores;
 
     private JButton btnConvolucion;
+    private JButton btnKirsch;
     private JButton btnReiniciarMatriz;
 
     public ConvolucionFrame(JFramePrincipal jfp) {
@@ -60,17 +61,26 @@ public class ConvolucionFrame extends JInternalFrame {
         panelKernel = new JPanel();
         panelModificadores = new JPanel();
 
+        btnConvolucion = new JButton();
+        btnKirsch = new JButton();
+        btnReiniciarMatriz = new JButton();
+
         labelOffset.setText("Offset:");
         labelDivisor.setText("Divisor:");
-
-        btnConvolucion = new JButton();
-        btnReiniciarMatriz = new JButton();
 
         btnConvolucion.setText("Aplicar");
         btnConvolucion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 aplicar();
+            }
+        });
+
+        btnKirsch.setText("Aplicar mascara Kirsch");
+        btnKirsch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                kirsch();
             }
         });
 
@@ -170,7 +180,7 @@ public class ConvolucionFrame extends JInternalFrame {
                         .addContainerGap(16, Short.MAX_VALUE)
                         .addComponent(btnConvolucion, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                         .addGap(8,8,8)
-                        .addComponent(btnReiniciarMatriz, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnKirsch, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(16, Short.MAX_VALUE))
 
         );
@@ -186,7 +196,7 @@ public class ConvolucionFrame extends JInternalFrame {
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(btnConvolucion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                 .addGap(8,8,8)
-                                .addComponent(btnReiniciarMatriz, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnKirsch, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(16, Short.MAX_VALUE)
                 )
                 .addComponent(panelKernel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -233,6 +243,14 @@ public class ConvolucionFrame extends JInternalFrame {
         };
 
         Image ni = Convolucion.convolucion(io, offset, divisor, kernel);
+        iframe.setImage(ni);
+    }
+
+    private void kirsch() {
+        ImageFrame iframe = jfp.getActiveImageFrame();
+        Image io = iframe.getImagenOriginal();
+
+        Image ni = Convolucion.aplicarKirsch(io);
         iframe.setImage(ni);
     }
 }
