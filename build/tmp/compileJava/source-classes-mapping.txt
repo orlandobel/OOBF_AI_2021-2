@@ -21,9 +21,10 @@ listeners/InternalFrameListener.java
  listeners.InternalFrameListener
 gui/SelectHistogramaFrame.java
  gui.SelectHistogramaFrame
-gui/ModificarFrame.java
- gui.ModificarFrame
- gui.ModificarFrame$1
+Espacial/Histograma.java
+ Espacial.Histograma
+Espacial/Mascaras.java
+ Espacial.Mascaras
 gui/HistogramaImagen/HistogramaFrame.java
  gui.HistogramaImagen.HistogramaFrame
 gui/FrameBinario.java
@@ -48,22 +49,24 @@ Espacial/Expansion.java
 gui/ExpandirFrame.java
  gui.ExpandirFrame
  gui.ExpandirFrame$1
-listeners/ModificarImagenListener.java
- listeners.ModificarImagenListener
+gui/ModificarFrame.java
+ gui.ModificarFrame
+ gui.ModificarFrame$1
 Espacial/Filtros.java
  Espacial.Filtros
-Espacial/Histograma.java
- Espacial.Histograma
+Espacial/Convolucion.java
+ Espacial.Convolucion
 gui/JFramePrincipal.java
  gui.JFramePrincipal
  gui.JFramePrincipal$1
 gui/HistogramaImagen/FramePrincipal.java
  gui.HistogramaImagen.FramePrincipal
  gui.HistogramaImagen.FramePrincipal$1
-Espacial/Convolucion.java
- Espacial.Convolucion
 gui/ConvolucionFrame.java
  gui.ConvolucionFrame
  gui.ConvolucionFrame$1
  gui.ConvolucionFrame$2
  gui.ConvolucionFrame$3
+ gui.ConvolucionFrame$4
+listeners/ModificarImagenListener.java
+ listeners.ModificarImagenListener
