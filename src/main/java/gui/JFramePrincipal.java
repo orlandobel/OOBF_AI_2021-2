@@ -29,6 +29,7 @@ public class JFramePrincipal extends JFrame  {
     private JMenu menuEspacial;
     private JMenu submenuBinarizacion;
     private JMenu subsubmenuBinarizacion; // sub sub menu para binarizaciones automaticas
+    private JMenu submenuMascaras;
 
     private JMenuItem itemAbrirImagen;
     private JMenuItem itemGuardar;
@@ -45,6 +46,7 @@ public class JFramePrincipal extends JFrame  {
     private JMenuItem itemIluminacion;
     private JMenuItem itemExpancion;
     private JMenuItem itemConvolucion;
+    private JMenuItem itemMascaraCajas;
 
     private ImageFrameListener iframeListener;
     private InternalFrameListener internalListener;
@@ -66,6 +68,7 @@ public class JFramePrincipal extends JFrame  {
         menuEspacial = new JMenu();
         submenuBinarizacion = new JMenu();
         subsubmenuBinarizacion = new JMenu();
+        submenuMascaras = new JMenu();
 
         itemAbrirImagen = new JMenuItem();
         itemGuardar = new JMenuItem();
@@ -81,6 +84,7 @@ public class JFramePrincipal extends JFrame  {
         itemIluminacion = new JMenuItem();
         itemExpancion = new JMenuItem();
         itemConvolucion = new JMenuItem();
+        itemMascaraCajas = new JMenuItem();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +104,7 @@ public class JFramePrincipal extends JFrame  {
         menuEspacial.setText("Espacial");
         submenuBinarizacion.setText("Binarización");
         subsubmenuBinarizacion.setText("Binarización automatica");
+        submenuMascaras.setText("Mascaras de imagen");
         /* --------------------------------- */
 
         /* -- items del menu file --*/
@@ -118,12 +123,16 @@ public class JFramePrincipal extends JFrame  {
         initJMenuItem(itemBinarizarAutomatico, "Método iterativo", "binarizar3", subsubmenuBinarizacion, mlistener);
         initJMenuItem(itemBinarizarOtsu, "Método otsu", "binarizar4", subsubmenuBinarizacion, mlistener);
         initJMenuItem(itemIluminacion, "Iluminacion", "iluminacion", menuEspacial, mlistener);
-            /* -- añadiendo submenus -- */
+            /* -- añadiendo submenus binarizacion -- */
             submenuBinarizacion.add(subsubmenuBinarizacion);
             menuEspacial.add(submenuBinarizacion);
-            /* ------------------------ */
+            /* -------------------------------------- */
         initJMenuItem(itemExpancion, "Expandir imagen", "exp", menuEspacial, mlistener);
         initJMenuItem(itemConvolucion, "Convolucion", "conv", menuEspacial, mlistener);
+            /* -- añadiendo submenus mascaras -- */
+            menuEspacial.add(submenuMascaras);
+            /* ---------------------------------- */
+        initJMenuItem(itemMascaraCajas, "Minimo y maximo", "box", submenuMascaras, mlistener);
         /* -----------------------------------------------------------------------------------------------------------*/
 
 

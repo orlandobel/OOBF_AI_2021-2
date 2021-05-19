@@ -76,6 +76,9 @@ public class ModificarImagenListener implements ActionListener {
             case "conv":
                 nuevoFrame(new ConvolucionFrame(this.jfp));
                 break;
+            case "box":
+                nuevoFrame(new FiltrosCajaFrame(this.jfp));
+                break;
             default:
                 System.out.println(item.getText());
         }

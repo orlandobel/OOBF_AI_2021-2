@@ -1,4 +1,4 @@
-package gui.HistogramaImagen;
+package gui;
 
 import Espacial.Histograma;
 import Herramientas.HerramientasImagen;

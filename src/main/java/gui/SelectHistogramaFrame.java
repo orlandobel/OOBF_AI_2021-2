@@ -1,7 +1,6 @@
 package gui;
 
 import Espacial.Histograma;
-import gui.HistogramaImagen.HistogramaFrame;
 
 import javax.swing.*;
 import java.awt.*;
