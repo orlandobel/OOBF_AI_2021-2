@@ -1,43 +1,36 @@
-Espacial/Histograma.java
- Espacial.Histograma
-gui/HistogramaFrame.java
- gui.HistogramaFrame
-ImagenAnalisis20212.java
- ImagenAnalisis20212
-Espacial/Mascaras.java
- Espacial.Mascaras
-Espacial/Convolucion.java
- Espacial.Convolucion
-Espacial/Filtros.java
- Espacial.Filtros
-Espacial/Binarizacion.java
- Espacial.Binarizacion
-Espacial/Expansion.java
- Espacial.Expansion
 gui/FiltrosFrame.java
  gui.FiltrosFrame
  gui.FiltrosFrame$1
  gui.FiltrosFrame$2
  gui.FiltrosFrame$3
+gui/HistogramaFrame.java
+ gui.HistogramaFrame
+Frecuencias/FFT.java
+ Frecuencias.FFT
 Herramientas/HerramientasImagen.java
  Herramientas.HerramientasImagen
 gui/IluminacionFrame.java
  gui.IluminacionFrame
  gui.IluminacionFrame$1
  gui.IluminacionFrame$2
+gui/FFTFrame.java
+ gui.FFTFrame
 gui/ImageFrame.java
  gui.ImageFrame
 gui/FrameBinario2.java
  gui.FrameBinario2
  gui.FrameBinario2$1
  gui.FrameBinario2$2
+Frecuencias/Gestor.java
+ Frecuencias.Gestor
 Espacial/Iluminacion.java
  Espacial.Iluminacion
-gui/ExpandirFrame.java
- gui.ExpandirFrame
- gui.ExpandirFrame$1
 listeners/InternalFrameListener.java
  listeners.InternalFrameListener
+Espacial/MinMax.java
+ Espacial.MinMax
+Espacial/Histograma.java
+ Espacial.Histograma
 gui/SelectHistogramaFrame.java
  gui.SelectHistogramaFrame
 gui/ConvolucionFrame.java
@@ -46,27 +39,50 @@ gui/ConvolucionFrame.java
  gui.ConvolucionFrame$2
  gui.ConvolucionFrame$3
  gui.ConvolucionFrame$4
+Espacial/Mascaras.java
+ Espacial.Mascaras
 gui/FrameBinario.java
  gui.FrameBinario
  gui.FrameBinario$1
  gui.FrameBinario$2
-gui/ModificarFrame.java
- gui.ModificarFrame
- gui.ModificarFrame$1
+Frecuencias/FrecuenciasMain.java
+ Frecuencias.FrecuenciasMain
+Espacial/Binarizacion.java
+ Espacial.Binarizacion
 listeners/ImageFrameListener.java
  listeners.ImageFrameListener
 gui/CopiarFrame.java
  gui.CopiarFrame
  gui.CopiarFrame$1
-gui/JFramePrincipal.java
- gui.JFramePrincipal
- gui.JFramePrincipal$1
-listeners/HistogramaImagen/AbrirListener.java
- listeners.HistogramaImagen.AbrirListener
-Espacial/MinMax.java
- Espacial.MinMax
 gui/FiltrosCajaFrame.java
  gui.FiltrosCajaFrame
  gui.FiltrosCajaFrame$1
+ImagenAnalisis20212.java
+ ImagenAnalisis20212
+listeners/HistogramaImagen/AbrirListener.java
+ listeners.HistogramaImagen.AbrirListener
+Espacial/Expansion.java
+ Espacial.Expansion
+gui/ExpandirFrame.java
+ gui.ExpandirFrame
+ gui.ExpandirFrame$1
 listeners/ModificarImagenListener.java
  listeners.ModificarImagenListener
+Espacial/Filtros.java
+ Espacial.Filtros
+Frecuencias/HerramientasColor.java
+ Frecuencias.HerramientasColor
+ Frecuencias.HerramientasColor$1
+ Frecuencias.HerramientasColor$CanalColor
+Espacial/Convolucion.java
+ Espacial.Convolucion
+Frecuencias/NumeroComplejo.java
+ Frecuencias.NumeroComplejo
+gui/JFramePrincipal.java
+ gui.JFramePrincipal
+ gui.JFramePrincipal$1
+gui/ModificarFrame.java
+ gui.ModificarFrame
+ gui.ModificarFrame$1
+Frecuencias/Filtros/Ideal.java
+ Frecuencias.Filtros.Ideal

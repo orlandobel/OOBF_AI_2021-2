@@ -122,7 +122,7 @@ public class Convolucion {
         return ncolor.getRGB();
     }
 
-    private static int validar(int tono) {
+    public static int validar(int tono) {
         if(tono > 255)
             return 255;
 

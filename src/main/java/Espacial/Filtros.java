@@ -21,7 +21,9 @@ public class Filtros {
                 int g = color.getGreen();
                 int b = color.getBlue();
 
-                bi.setRGB(x, y, new Color(255-r, 255-g, 255-b).getRGB());
+                int gr = (r + g + b) / 3;
+
+                bi.setRGB(x, y, new Color(gr, gr, gr).getRGB());
             }
         }
 
