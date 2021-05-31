@@ -21,16 +21,16 @@ gui/FrameBinario2.java
  gui.FrameBinario2
  gui.FrameBinario2$1
  gui.FrameBinario2$2
-Frecuencias/Gestor.java
- Frecuencias.Gestor
+Espacial/Histograma.java
+ Espacial.Histograma
 Espacial/Iluminacion.java
  Espacial.Iluminacion
 listeners/InternalFrameListener.java
  listeners.InternalFrameListener
 Espacial/MinMax.java
  Espacial.MinMax
-Espacial/Histograma.java
- Espacial.Histograma
+Frecuencias/Filtros/Ideal.java
+ Frecuencias.Filtros.Ideal
 gui/SelectHistogramaFrame.java
  gui.SelectHistogramaFrame
 gui/ConvolucionFrame.java
@@ -45,8 +45,9 @@ gui/FrameBinario.java
  gui.FrameBinario
  gui.FrameBinario$1
  gui.FrameBinario$2
-Frecuencias/FrecuenciasMain.java
- Frecuencias.FrecuenciasMain
+gui/ModificarFrame.java
+ gui.ModificarFrame
+ gui.ModificarFrame$1
 Espacial/Binarizacion.java
  Espacial.Binarizacion
 listeners/ImageFrameListener.java
@@ -81,8 +82,7 @@ Frecuencias/NumeroComplejo.java
 gui/JFramePrincipal.java
  gui.JFramePrincipal
  gui.JFramePrincipal$1
-gui/ModificarFrame.java
- gui.ModificarFrame
- gui.ModificarFrame$1
-Frecuencias/Filtros/Ideal.java
- Frecuencias.Filtros.Ideal
+Frecuencias/Gestor.java
+ Frecuencias.Gestor
+Frecuencias/FrecuenciasMain.java
+ Frecuencias.FrecuenciasMain

@@ -24,7 +24,7 @@ public class HerramientasImagen {
             // crear un selector de archivos
             JFileChooser selector = new JFileChooser();
             // agregar el filtro al selector
-            selector.addChoosableFileFilter(filtro);
+            selector.setFileFilter(filtro);
             // especificar que solo se puedan abrir archivos
             selector.setFileSelectionMode(JFileChooser.FILES_ONLY);
 

@@ -17,14 +17,20 @@ public class FrecuenciasMain {
 
         BufferedImage bi = HerramientasImagen.toBufferedImage(grices);
         Gestor gestor = new Gestor(bi);
-        BufferedImage bit = gestor.obtenerImagenFrecuencias(true);
 
+        BufferedImage bit = gestor.obtenerImagenFrecuencias(true);
         Image ir = HerramientasImagen.toImage(bit);
         FFTFrame frame2 = new FFTFrame(ir);
         frame2.setVisible(true);
 
-        Image ii = gestor.obtenerImagenEspacial();
-        FFTFrame frame3 = new FFTFrame(ii);
+        BufferedImage bif = gestor.aplicarFiltro(28, true);
+        Image ifl = HerramientasImagen.toImage(bif);
+        FFTFrame frame3 = new FFTFrame(ifl);
         frame3.setVisible(true);
+
+        BufferedImage bii = gestor.obtenerImagenEspacial();
+        Image ii = HerramientasImagen.toImage(bii);
+        FFTFrame frame4 = new FFTFrame(ii);
+        frame4.setVisible(true);
     }
 }

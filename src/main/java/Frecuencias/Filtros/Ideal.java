@@ -27,10 +27,6 @@ public class Ideal {
                 int x1 = 2 * x;
                 p = p + x1 + 1;
             } else {
-                /*int x1 = (2 * x) + 2;
-                int y1 = (2 * y) - 2;
-                p = p + x1 + 1 - y1;*/
-
                 p = p + 2*(x - y) +1;
 
                 y--;
@@ -68,43 +64,61 @@ public class Ideal {
         return cuadrante;
     }
 
-    public static void main(String[] args) {
-        int[] cuadrante = Ideal.obtenerCuadranteCirculo(10);
-        final int size = 128;
-        int limit = size - 1;
-        BufferedImage bi = new BufferedImage(size,size, BufferedImage.TYPE_INT_RGB);
+    public static int[][] obtenerFiltro(int[] cuadrante, int dimencion, boolean ajuste_encuadre) {
+        int[][] filtro = new int[dimencion][dimencion];
 
-        for(int x=0;x<size;x++) {
-            for(int y=0;y<size;y++) {
-                if((x == y)) {
-                    bi.setRGB(x, y, Color.GREEN.getRGB());
-                    bi.setRGB(x, limit-y, Color.GREEN.getRGB());
-                }
-                else {
-                    bi.setRGB(x, y, Color.RED.getRGB());
-                }
+        int m = dimencion/2; // punto medio
+        int me = m-1; // medio espejo
+
+
+        for(int i=0, p=m, q=me; i<cuadrante.length; i++, p++, q--) {
+            for(int j=0; j<cuadrante[i]; j++) {
+                filtro[p][me-j] = 1;
+                filtro[p][m+j] = 1;
+                filtro[q][me-j] = 1;
+                filtro[q][m+j] = 1;
             }
         }
 
-        int m = 128/2; // punto medio
-        int me = m-1; // medio espejo
+        if(ajuste_encuadre) {
+            int[][] aux = new int[dimencion][dimencion];
+
+
+            for(int j=0; j<dimencion; j++) {
+                for(int i=0; i<dimencion; i++) {
+                    int x = (i + (dimencion / 2)) % dimencion;
+                    int y = (j + (dimencion / 2)) % dimencion;
+
+                    aux[i][j] = filtro[x][y];
+                }
+            }
+
+            filtro = aux;
+        }
+
+        return filtro;
+    }
+
+    public static void main(String[] args) {
+        final int size = 256;
+        int limit = size - 1;
+
+        int[] cuadrante = Ideal.obtenerCuadranteCirculo(28);
+        int[][] filtro = obtenerFiltro(cuadrante, size, true);
+        BufferedImage bi = new BufferedImage(size,size, BufferedImage.TYPE_INT_RGB);
 
         int negro = Color.BLACK.getRGB();
         int blanco = Color.WHITE.getRGB();
 
-        for(int i=0, p=m, q=me; i<cuadrante.length; i++, p++, q--) {
-            for(int j=0; j<cuadrante[i]; j++) {
-                bi.setRGB(p, me-j, negro);
-                bi.setRGB(p, m+j, negro);
-                bi.setRGB(q, me-j, negro);
-                bi.setRGB(q, m+j, negro);
+        for(int i=0; i<size; i++) {
+            for(int j=0; j<size; j++) {
+                if(filtro[i][j] == 1) {
+                    bi.setRGB(i, j, blanco);
+                } else {
+                    bi.setRGB(i, j, negro);
+                }
             }
         }
-
-        bi.setRGB(m, m, blanco);
-        bi.setRGB(m, me, blanco);
-        bi.setRGB(me, m , blanco);
-        bi.setRGB(me, me, blanco);
 
         Image image = HerramientasImagen.toImage(bi);
 
