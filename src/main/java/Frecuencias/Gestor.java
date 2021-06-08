@@ -3,6 +3,8 @@ package Frecuencias;
 import java.awt.image.BufferedImage;
 
 import Espacial.Convolucion;
+import Frecuencias.Filtros.Butterworth;
+import Frecuencias.Filtros.Gauss;
 import Frecuencias.Filtros.Ideal;
 import Frecuencias.HerramientasColor.CanalColor;
 public class Gestor {
@@ -76,11 +78,15 @@ public class Gestor {
 
         for(int y=0; y<h; y++) {
             for(int x=0; x<w; x++) {
-                int color = (int)Math.abs(inversa[x][y].getR());
-                color = Convolucion.validar(color);
-                color = HerramientasColor.obtenerRGBPorCanal(color, CanalColor.ROJO);
+                int color1 = buffer.getRGB(x, y);
 
-                int rgb = HerramientasColor.acumularColor(buffer.getRGB(x, y), color);
+                int rojo = obtenerColorRealDeFrecuencia(x, y, inversa, CanalColor.ROJO);
+                int verde = obtenerColorRealDeFrecuencia(x, y, inversa, CanalColor.VERDE);
+                int azul = obtenerColorRealDeFrecuencia(x, y, inversa, CanalColor.AZUL);
+
+                int r = HerramientasColor.acumularColor(color1, rojo);
+                int rg = HerramientasColor.acumularColor(r, verde);
+                int rgb = HerramientasColor.acumularColor(rg, azul);
 
                 buffer.setRGB(x, y, rgb);
             }
@@ -127,16 +133,54 @@ public class Gestor {
     public BufferedImage aplicarButterwoth(int d0, int orden, boolean pasabajas, boolean reajusteCuadrante) {
         BufferedImage buffer = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 
-        double[][] distancias = Ideal.distancias(w);
+        double[][] distancias = Butterworth.calcularDistancias(h);
+        double[][] filtro = Butterworth.calcularFiltro(distancias, orden, d0, pasabajas);
 
         ifl = new NumeroComplejo[w][h];
 
-        for(int x =0; x<w; x++) {
+        for(int x=0; x<w; x++) {
             for(int y=0; y<h; y++) {
-                double d = (pasabajas)? distancias[x][y]/d0 : d0/distancias[x][y];
-                double f = 1 / (1 + Math.pow(d,2*orden));
-                NumeroComplejo complejo = it[x][y].multiplicar(f);
+                //if(filtro[x][y] < 1) {
+                NumeroComplejo complejo = it[x][y].multiplicar(filtro[x][y]);
                 ifl[x][y] = complejo;
+                /*} else {
+                    ifl[x][y] = new NumeroComplejo(it[x][y]);
+                }*/
+            }
+        }
+
+        for(int y=0; y<h; y++) {
+            for(int x=0; x<w; x++) {
+                int ejeX = reajusteCuadrante ? (x + (w / 2)) % w : x;
+                int ejeY = reajusteCuadrante ? (y + (h / 2)) % h : y;
+
+                int color1 = buffer.getRGB(x, y);
+                int color2 = obtenerColorRealDeFrecuencia(ejeX, ejeY, ifl, CanalColor.ROJO);
+                int rgb = HerramientasColor.acumularColor(color1, color2);
+
+                buffer.setRGB(x, y, rgb);
+            }
+        }
+
+        return buffer;
+    }
+
+    public BufferedImage aplicarGauss(int d0, boolean pasabajas, boolean reajusteCuadrante) {
+        BufferedImage buffer = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+
+        double[][] distancias = Gauss.calcularDistancias(h);
+        double[][] filtro = Gauss.calcularFiltro(distancias, d0, pasabajas);
+
+        ifl = new NumeroComplejo[w][h];
+
+        for(int x=0; x<w; x++) {
+            for(int y=0; y<h; y++) {
+                //if(filtro[x][y] < 1) {
+                NumeroComplejo complejo = it[x][y].multiplicar(filtro[x][y]);
+                ifl[x][y] = complejo;
+                /*} else {
+                    ifl[x][y] = new NumeroComplejo(it[x][y]);
+                }*/
             }
         }
 

@@ -43,11 +43,13 @@ public class Gauss {
         return distancias;
     }
 
-    public static double[][] pasaBajas(double[][] distancias, int distancia, boolean pasabajas) {
-        double filtro[][] = new double[distancias.length][distancias.length];
+    public static double[][] calcularFiltro(double[][] distancias, int distancia, boolean pasabajas) {
+        int dimencion = distancias.length;
 
-        for(int x=0; x<distancias.length; x++) {
-            for(int y=0; y<distancias.length; y++) {
+        double filtro[][] = new double[dimencion][dimencion];
+
+        for(int x=0; x<dimencion; x++) {
+            for(int y=0; y<dimencion; y++) {
                 double d = distancias[x][y] * -1;
 
                 double exp_arg = Math.pow(2*distancia, 2);
@@ -58,13 +60,26 @@ public class Gauss {
             }
         }
 
+        double[][] aux = new double[dimencion][dimencion];
+
+        for(int j=0; j<dimencion; j++) {
+            for(int i=0; i<dimencion; i++) {
+                int x = (i + (dimencion / 2)) % dimencion;
+                int y = (j + (dimencion / 2)) % dimencion;
+
+                aux[i][j] = filtro[x][y];
+            }
+        }
+
+        filtro = aux;
+
         return filtro;
     }
 
     public static void main(String[] args) {
         int size = 256;
         double[][] distancias = calcularDistancias(size);
-        double[][] filtro = pasaBajas(distancias, 5, true);
+        double[][] filtro = calcularFiltro(distancias, 5, true);
 
         BufferedImage bf = new BufferedImage(size,size, BufferedImage.TYPE_INT_RGB);
 

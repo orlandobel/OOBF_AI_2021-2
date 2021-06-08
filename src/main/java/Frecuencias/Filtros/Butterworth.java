@@ -41,11 +41,13 @@ public class Butterworth {
         return distancias;
     }
 
-    public static double[][] pasaBajas(double[][] distancias, int orden, int distancia, boolean pasabajas) {
-        double filtro[][] = new double[distancias.length][distancias.length];
+    public static double[][] calcularFiltro(double[][] distancias, int orden, int distancia, boolean pasabajas) {
+        int dimencion = distancias.length;
 
-        for(int x=0; x<distancias.length; x++) {
-            for(int y=0; y<distancias.length; y++) {
+        double filtro[][] = new double[dimencion][dimencion];
+
+        for(int x=0; x<dimencion; x++) {
+            for(int y=0; y<dimencion; y++) {
                 double divicion = (pasabajas)? distancias[x][y] / distancia: distancia/distancias[x][y];
                 int exponente = 2*orden;
                 filtro[x][y] = 1 / (1 + Math.pow(divicion, exponente));
@@ -53,13 +55,26 @@ public class Butterworth {
             }
         }
 
+        double[][] aux = new double[dimencion][dimencion];
+
+        for(int j=0; j<dimencion; j++) {
+            for(int i=0; i<dimencion; i++) {
+                int x = (i + (dimencion / 2)) % dimencion;
+                int y = (j + (dimencion / 2)) % dimencion;
+
+                aux[i][j] = filtro[x][y];
+            }
+        }
+
+        filtro = aux;
+
         return filtro;
     }
 
     public static void main(String[] args) {
         int size = 64;
         double[][] distancias = calcularDistancias(size);
-        double[][] filtro = pasaBajas(distancias, 5, 5, true);
+        double[][] filtro = calcularFiltro(distancias, 5, 5, true);
 
         BufferedImage bf = new BufferedImage(size,size, BufferedImage.TYPE_INT_RGB);
 

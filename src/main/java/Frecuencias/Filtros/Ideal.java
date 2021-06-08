@@ -86,7 +86,6 @@ public class Ideal {
 
         int[][] aux = new int[dimencion][dimencion];
 
-
         for(int j=0; j<dimencion; j++) {
             for(int i=0; i<dimencion; i++) {
                 int x = (i + (dimencion / 2)) % dimencion;

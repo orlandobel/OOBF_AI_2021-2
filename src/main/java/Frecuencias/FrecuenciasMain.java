@@ -24,7 +24,8 @@ public class FrecuenciasMain {
         frame2.setVisible(true);
 
         BufferedImage bif = gestor.aplicarIdeal(52, true, false);
-        //BufferedImage bif = gestor.aplicarButterwoth(20, 2, true, true);
+        //BufferedImage bif = gestor.aplicarButterwoth(50, 5, true, true);
+        //BufferedImage bif = gestor.aplicarGauss(120, true, true);
         Image ifl = HerramientasImagen.toImage(bif);
         FFTFrame frame3 = new FFTFrame(ifl);
         frame3.setVisible(true);
