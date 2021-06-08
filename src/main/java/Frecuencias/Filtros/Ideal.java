@@ -64,39 +64,57 @@ public class Ideal {
         return cuadrante;
     }
 
-    public static int[][] obtenerFiltro(int[] cuadrante, int dimencion, boolean ajuste_encuadre) {
+    public static int[][] obtenerFiltro(int[] cuadrante, int dimencion, boolean pasabajas) {
         int[][] filtro = new int[dimencion][dimencion];
 
         int m = dimencion/2; // punto medio
         int me = m-1; // medio espejo
 
+        if(pasabajas)
+            for(int x=0;x<dimencion;x++)
+                for(int y=0;y<dimencion;y++)
+                    filtro[x][y] = 1;
 
         for(int i=0, p=m, q=me; i<cuadrante.length; i++, p++, q--) {
             for(int j=0; j<cuadrante[i]; j++) {
-                filtro[p][me-j] = 1;
-                filtro[p][m+j] = 1;
-                filtro[q][me-j] = 1;
-                filtro[q][m+j] = 1;
+                filtro[p][me-j] = (pasabajas)? 0 : 1;
+                filtro[p][m+j] = (pasabajas)? 0 : 1;
+                filtro[q][me-j] = (pasabajas)? 0 : 1;
+                filtro[q][m+j] = (pasabajas)? 0 : 1;
             }
         }
 
-        if(ajuste_encuadre) {
-            int[][] aux = new int[dimencion][dimencion];
+        int[][] aux = new int[dimencion][dimencion];
 
 
-            for(int j=0; j<dimencion; j++) {
-                for(int i=0; i<dimencion; i++) {
-                    int x = (i + (dimencion / 2)) % dimencion;
-                    int y = (j + (dimencion / 2)) % dimencion;
+        for(int j=0; j<dimencion; j++) {
+            for(int i=0; i<dimencion; i++) {
+                int x = (i + (dimencion / 2)) % dimencion;
+                int y = (j + (dimencion / 2)) % dimencion;
 
-                    aux[i][j] = filtro[x][y];
-                }
+                aux[i][j] = filtro[x][y];
             }
-
-            filtro = aux;
         }
+
+        filtro = aux;
+
 
         return filtro;
+    }
+
+    public static double[][] distancias(int d) {
+        double[][] distancias = new double[d][d];
+
+        for(int x=0; x<d; x++) {
+            for(int y=0; y<d; y++) {
+                double d1 = Math.pow(x - d/2, 2);
+                double d2 = Math.pow(y - d/2, 2);
+
+                distancias[x][y] = Math.sqrt(d1+d2);
+            }
+        }
+
+        return distancias;
     }
 
     public static void main(String[] args) {

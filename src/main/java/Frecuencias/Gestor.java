@@ -1,6 +1,5 @@
 package Frecuencias;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import Espacial.Convolucion;
@@ -90,22 +89,54 @@ public class Gestor {
         return buffer;
     }
 
-    public BufferedImage aplicarFiltro(int radio, boolean reajusteCuadrante) {
+    public BufferedImage aplicarIdeal(int radio, boolean reajusteCuadrante, boolean pasabajas) {
         BufferedImage buffer = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 
         int[] cuadrante = Ideal.obtenerCuadranteCirculo(radio);
-        int[][] filtro = Ideal.obtenerFiltro(cuadrante, h, reajusteCuadrante);
+        int[][] filtro = Ideal.obtenerFiltro(cuadrante, h, pasabajas);
 
         ifl = new NumeroComplejo[w][h];
 
         for(int x=0; x<w; x++) {
             for(int y=0; y<h; y++) {
-                if(filtro[x][y] < 1) {
+                //if(filtro[x][y] < 1) {
                     NumeroComplejo complejo = it[x][y].multiplicar(filtro[x][y]);
                     ifl[x][y] = complejo;
-                } else {
+                /*} else {
                     ifl[x][y] = new NumeroComplejo(it[x][y]);
-                }
+                }*/
+            }
+        }
+
+        for(int y=0; y<h; y++) {
+            for(int x=0; x<w; x++) {
+                int ejeX = reajusteCuadrante ? (x + (w / 2)) % w : x;
+                int ejeY = reajusteCuadrante ? (y + (h / 2)) % h : y;
+
+                int color1 = buffer.getRGB(x, y);
+                int color2 = obtenerColorRealDeFrecuencia(ejeX, ejeY, ifl, CanalColor.ROJO);
+                int rgb = HerramientasColor.acumularColor(color1, color2);
+
+                buffer.setRGB(x, y, rgb);
+            }
+        }
+
+        return buffer;
+    }
+
+    public BufferedImage aplicarButterwoth(int d0, int orden, boolean pasabajas, boolean reajusteCuadrante) {
+        BufferedImage buffer = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+
+        double[][] distancias = Ideal.distancias(w);
+
+        ifl = new NumeroComplejo[w][h];
+
+        for(int x =0; x<w; x++) {
+            for(int y=0; y<h; y++) {
+                double d = (pasabajas)? distancias[x][y]/d0 : d0/distancias[x][y];
+                double f = 1 / (1 + Math.pow(d,2*orden));
+                NumeroComplejo complejo = it[x][y].multiplicar(f);
+                ifl[x][y] = complejo;
             }
         }
 

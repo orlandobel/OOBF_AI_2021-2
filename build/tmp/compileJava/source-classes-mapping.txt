@@ -3,6 +3,8 @@ gui/FiltrosFrame.java
  gui.FiltrosFrame$1
  gui.FiltrosFrame$2
  gui.FiltrosFrame$3
+Frecuencias/Filtros/Gauss.java
+ Frecuencias.Filtros.Gauss
 gui/HistogramaFrame.java
  gui.HistogramaFrame
 Frecuencias/FFT.java
@@ -21,8 +23,8 @@ gui/FrameBinario2.java
  gui.FrameBinario2
  gui.FrameBinario2$1
  gui.FrameBinario2$2
-Espacial/Histograma.java
- Espacial.Histograma
+Frecuencias/Gestor.java
+ Frecuencias.Gestor
 Espacial/Iluminacion.java
  Espacial.Iluminacion
 listeners/InternalFrameListener.java
@@ -45,9 +47,10 @@ gui/FrameBinario.java
  gui.FrameBinario
  gui.FrameBinario$1
  gui.FrameBinario$2
-gui/ModificarFrame.java
- gui.ModificarFrame
- gui.ModificarFrame$1
+Frecuencias/FrecuenciasMain.java
+ Frecuencias.FrecuenciasMain
+Frecuencias/Filtros/Butterworth.java
+ Frecuencias.Filtros.Butterworth
 Espacial/Binarizacion.java
  Espacial.Binarizacion
 listeners/ImageFrameListener.java
@@ -82,7 +85,8 @@ Frecuencias/NumeroComplejo.java
 gui/JFramePrincipal.java
  gui.JFramePrincipal
  gui.JFramePrincipal$1
-Frecuencias/Gestor.java
- Frecuencias.Gestor
-Frecuencias/FrecuenciasMain.java
- Frecuencias.FrecuenciasMain
+gui/ModificarFrame.java
+ gui.ModificarFrame
+ gui.ModificarFrame$1
+Espacial/Histograma.java
+ Espacial.Histograma
