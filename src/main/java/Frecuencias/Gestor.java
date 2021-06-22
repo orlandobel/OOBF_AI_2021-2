@@ -95,11 +95,11 @@ public class Gestor {
         return buffer;
     }
 
-    public BufferedImage aplicarIdeal(int radio, boolean reajusteCuadrante, boolean pasabajas) {
+    public BufferedImage aplicarIdeal(int radio, boolean reajusteCuadrante, boolean pasaaltas) {
         BufferedImage buffer = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 
         int[] cuadrante = Ideal.obtenerCuadranteCirculo(radio);
-        int[][] filtro = Ideal.obtenerFiltro(cuadrante, h, pasabajas);
+        int[][] filtro = Ideal.obtenerFiltro(cuadrante, h, pasaaltas);
 
         ifl = new NumeroComplejo[w][h];
 

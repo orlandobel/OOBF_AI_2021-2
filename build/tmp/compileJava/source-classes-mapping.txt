@@ -23,16 +23,17 @@ gui/FrameBinario2.java
  gui.FrameBinario2
  gui.FrameBinario2$1
  gui.FrameBinario2$2
-Frecuencias/Gestor.java
- Frecuencias.Gestor
+gui/ModificarFrame.java
+ gui.ModificarFrame
+ gui.ModificarFrame$1
 Espacial/Iluminacion.java
  Espacial.Iluminacion
 listeners/InternalFrameListener.java
  listeners.InternalFrameListener
 Espacial/MinMax.java
  Espacial.MinMax
-Frecuencias/Filtros/Ideal.java
- Frecuencias.Filtros.Ideal
+Morfologico/FrameMorfologico.java
+ Morfologico.FrameMorfologico
 gui/SelectHistogramaFrame.java
  gui.SelectHistogramaFrame
 gui/ConvolucionFrame.java
@@ -47,8 +48,8 @@ gui/FrameBinario.java
  gui.FrameBinario
  gui.FrameBinario$1
  gui.FrameBinario$2
-Frecuencias/FrecuenciasMain.java
- Frecuencias.FrecuenciasMain
+Espacial/Histograma.java
+ Espacial.Histograma
 Frecuencias/Filtros/Butterworth.java
  Frecuencias.Filtros.Butterworth
 Espacial/Binarizacion.java
@@ -70,8 +71,12 @@ Espacial/Expansion.java
 gui/ExpandirFrame.java
  gui.ExpandirFrame
  gui.ExpandirFrame$1
+Frecuencias/Filtros/Ideal.java
+ Frecuencias.Filtros.Ideal
 listeners/ModificarImagenListener.java
  listeners.ModificarImagenListener
+Frecuencias/FrecuenciasMain.java
+ Frecuencias.FrecuenciasMain
 Espacial/Filtros.java
  Espacial.Filtros
 Frecuencias/HerramientasColor.java
@@ -85,8 +90,22 @@ Frecuencias/NumeroComplejo.java
 gui/JFramePrincipal.java
  gui.JFramePrincipal
  gui.JFramePrincipal$1
-gui/ModificarFrame.java
- gui.ModificarFrame
- gui.ModificarFrame$1
-Espacial/Histograma.java
- Espacial.Histograma
+Frecuencias/Gestor.java
+ Frecuencias.Gestor
+Morfologico/Transformer.java
+ Morfologico.Transformer
+Morfologico/ScaleFrame.java
+ Morfologico.ScaleFrame
+ Morfologico.ScaleFrame$1
+Morfologico/TraslationFrame.java
+ Morfologico.TraslationFrame
+ Morfologico.TraslationFrame$1
+Morfologico/RotationFrame.java
+ Morfologico.RotationFrame
+ Morfologico.RotationFrame$1
+Morfologico/MorfologicoMain.java
+ Morfologico.MorfologicoMain
+ Morfologico.MorfologicoMain$1
+ Morfologico.MorfologicoMain$2
+ Morfologico.MorfologicoMain$3
+ Morfologico.MorfologicoMain$4

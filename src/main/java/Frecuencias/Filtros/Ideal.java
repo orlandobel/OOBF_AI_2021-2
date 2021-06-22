@@ -64,23 +64,23 @@ public class Ideal {
         return cuadrante;
     }
 
-    public static int[][] obtenerFiltro(int[] cuadrante, int dimencion, boolean pasabajas) {
+    public static int[][] obtenerFiltro(int[] cuadrante, int dimencion, boolean pasaaltas) {
         int[][] filtro = new int[dimencion][dimencion];
 
         int m = dimencion/2; // punto medio
         int me = m-1; // medio espejo
 
-        if(pasabajas)
+        if(pasaaltas)
             for(int x=0;x<dimencion;x++)
                 for(int y=0;y<dimencion;y++)
                     filtro[x][y] = 1;
 
         for(int i=0, p=m, q=me; i<cuadrante.length; i++, p++, q--) {
             for(int j=0; j<cuadrante[i]; j++) {
-                filtro[p][me-j] = (pasabajas)? 0 : 1;
-                filtro[p][m+j] = (pasabajas)? 0 : 1;
-                filtro[q][me-j] = (pasabajas)? 0 : 1;
-                filtro[q][m+j] = (pasabajas)? 0 : 1;
+                filtro[p][me-j] = (pasaaltas)? 0 : 1;
+                filtro[p][m+j] = (pasaaltas)? 0 : 1;
+                filtro[q][me-j] = (pasaaltas)? 0 : 1;
+                filtro[q][m+j] = (pasaaltas)? 0 : 1;
             }
         }
 

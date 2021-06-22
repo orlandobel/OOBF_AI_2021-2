@@ -19,16 +19,16 @@ public class FrecuenciasMain {
         Gestor gestor = new Gestor(bi);
 
         BufferedImage bit = gestor.obtenerImagenFrecuencias(true);
-        Image ir = HerramientasImagen.toImage(bit);
+        /*Image ir = HerramientasImagen.toImage(bit);
         FFTFrame frame2 = new FFTFrame(ir);
-        frame2.setVisible(true);
+        frame2.setVisible(true);*/
 
-        BufferedImage bif = gestor.aplicarIdeal(52, true, false);
-        //BufferedImage bif = gestor.aplicarButterwoth(50, 5, true, true);
-        //BufferedImage bif = gestor.aplicarGauss(120, true, true);
-        Image ifl = HerramientasImagen.toImage(bif);
+        //BufferedImage bif = gestor.aplicarIdeal(120, true, true);
+        //BufferedImage bif = gestor.aplicarButterwoth(40, 3, true, true);
+        BufferedImage bif = gestor.aplicarGauss(5, false, true);
+        /*Image ifl = HerramientasImagen.toImage(bif);
         FFTFrame frame3 = new FFTFrame(ifl);
-        frame3.setVisible(true);
+        frame3.setVisible(true);*/
 
 
         BufferedImage bii = gestor.obtenerImagenEspacial();
